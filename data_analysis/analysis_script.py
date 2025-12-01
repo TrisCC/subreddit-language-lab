@@ -64,11 +64,35 @@ def analyze_data(df, file_name):
     
     all_text = ' '.join(df['text_filtered'])
     
+    # Calculate word frequencies
+    words = all_text.split()
+    word_counts = Counter(words)
+    
     bigrams = get_ngrams(all_text, 2)
     trigrams = get_ngrams(all_text, 3)
     
     bigram_counts = Counter(bigrams)
     trigram_counts = Counter(trigrams)
+    
+    # Perform POS tagging and count POS tags
+    doc = nlp(all_text)
+    pos_counts = Counter([token.pos_ for token in doc])
+    
+    # Calculate POS tag ratios
+    total_tokens = len(doc)
+    pos_ratios = {pos: count / total_tokens for pos, count in pos_counts.items()}
+    
+    # Categorize words by POS tag
+    nouns = [token.text for token in doc if token.pos_ == 'NOUN']
+    verbs = [token.text for token in doc if token.pos_ == 'VERB']
+    adjectives = [token.text for token in doc if token.pos_ == 'ADJ']
+    adverbs = [token.text for token in doc if token.pos_ == 'ADV']
+    
+    # Count word frequencies per category
+    noun_counts = Counter(nouns)
+    verb_counts = Counter(verbs)
+    adjective_counts = Counter(adjectives)
+    adverb_counts = Counter(adverbs)
     
     print("Most common bigrams:")
     print(bigram_counts.most_common(10))
@@ -78,6 +102,12 @@ def analyze_data(df, file_name):
 
     # Structure the results in a dictionary
     results = {
+        "pos_ratios": pos_ratios,
+        "most_common_words": {word: count for word, count in word_counts.most_common(10)},
+        "most_common_nouns": {word: count for word, count in noun_counts.most_common(10)},
+        "most_common_verbs": {word: count for word, count in verb_counts.most_common(10)},
+        "most_common_adjectives": {word: count for word, count in adjective_counts.most_common(10)},
+        "most_common_adverbs": {word: count for word, count in adverb_counts.most_common(10)},
         "most_common_bigrams": {bigram: count for bigram, count in bigram_counts.most_common(10)},
         "most_common_trigrams": {trigram: count for trigram, count in trigram_counts.most_common(10)}
     }
@@ -88,7 +118,7 @@ def analyze_data(df, file_name):
     if not os.path.exists(data_processed_dir):
         os.makedirs(data_processed_dir)
         
-    output_file_path = os.path.join(data_processed_dir, f"{file_name.replace('.csv', '')}_ngrams.json")
+    output_file_path = os.path.join(data_processed_dir, f"{file_name.replace('.csv', '')}_analysis.json")
     with open(output_file_path, 'w') as f:
         json.dump(results, f, indent=4)
     
