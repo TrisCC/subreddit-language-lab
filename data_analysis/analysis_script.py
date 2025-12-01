@@ -2,6 +2,8 @@ import os
 import sys
 import pandas as pd
 import spacy
+from collections import Counter
+import json
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -37,12 +39,12 @@ def main():
     #     print(f"- {file}")
 
     # Iterate through each CSV file and load it into a DataFrame
-    for file in csv_files:
+    for file in csv_files[:3]:
         file_path = os.path.join(reddit_data_dir, file)
         df = load_csv(file_path)
         if df is not None:
             print(f"==== ANALYZING {file} ====")
-            analyze_data(df)
+            analyze_data(df, file)
 
     print("==== END ====")
 
@@ -55,9 +57,50 @@ def load_csv(file_path):
         print(f"Error loading {file_path}: {e}")
         return None
     
-def analyze_data(df):
+def analyze_data(df, file_name):
     # Example analysis: Print the first 5 rows of the DataFrame
-    print(df.head())
+    df['text'] = df['title'].fillna('') + ' ' + df['body'].fillna('')
+    df['text_filtered'] = df['text'].apply(filter_stopwords)
+    
+    all_text = ' '.join(df['text_filtered'])
+    
+    bigrams = get_ngrams(all_text, 2)
+    trigrams = get_ngrams(all_text, 3)
+    
+    bigram_counts = Counter(bigrams)
+    trigram_counts = Counter(trigrams)
+    
+    print("Most common bigrams:")
+    print(bigram_counts.most_common(10))
+    
+    print("Most common trigrams:")
+    print(trigram_counts.most_common(10))
+
+    # Structure the results in a dictionary
+    results = {
+        "most_common_bigrams": {bigram: count for bigram, count in bigram_counts.most_common(10)},
+        "most_common_trigrams": {trigram: count for trigram, count in trigram_counts.most_common(10)}
+    }
+
+    # Save the results to a file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_processed_dir = os.path.abspath(os.path.join(current_dir, '..', 'data_processed'))
+    if not os.path.exists(data_processed_dir):
+        os.makedirs(data_processed_dir)
+        
+    output_file_path = os.path.join(data_processed_dir, f"{file_name.replace('.csv', '')}_ngrams.json")
+    with open(output_file_path, 'w') as f:
+        json.dump(results, f, indent=4)
+    
+def filter_stopwords(text):
+    doc = nlp(text)
+    tokens = [token.text.lower() for token in doc if not token.is_stop and not token.is_punct and token.is_alpha and len(token.text) > 2]
+    return " ".join(tokens)
+
+def get_ngrams(text, n):
+    tokens = text.split()
+    ngrams = zip(*[tokens[i:] for i in range(n)])
+    return [" ".join(ngram) for ngram in ngrams]
 
 if __name__ == "__main__":
     main()
