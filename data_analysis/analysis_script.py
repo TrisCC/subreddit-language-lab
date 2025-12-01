@@ -39,7 +39,7 @@ def main():
     #     print(f"- {file}")
 
     # Iterate through each CSV file and load it into a DataFrame
-    for file in csv_files[:3]:
+    for file in csv_files:
         file_path = os.path.join(reddit_data_dir, file)
         df = load_csv(file_path)
         if df is not None:
@@ -94,6 +94,12 @@ def analyze_data(df, file_name):
     adjective_counts = Counter(adjectives)
     adverb_counts = Counter(adverbs)
     
+    # Calculate word length distributions
+    noun_lengths = Counter([len(word) for word in nouns])
+    verb_lengths = Counter([len(word) for word in verbs])
+    adjective_lengths = Counter([len(word) for word in adjectives])
+    adverb_lengths = Counter([len(word) for word in adverbs])
+    
     print("Most common bigrams:")
     print(bigram_counts.most_common(10))
     
@@ -103,13 +109,19 @@ def analyze_data(df, file_name):
     # Structure the results in a dictionary
     results = {
         "pos_ratios": pos_ratios,
-        "most_common_words": {word: count for word, count in word_counts.most_common(10)},
-        "most_common_nouns": {word: count for word, count in noun_counts.most_common(10)},
-        "most_common_verbs": {word: count for word, count in verb_counts.most_common(10)},
-        "most_common_adjectives": {word: count for word, count in adjective_counts.most_common(10)},
-        "most_common_adverbs": {word: count for word, count in adverb_counts.most_common(10)},
+        "word_length_distributions": {
+            "nouns": dict(sorted(noun_lengths.items())),
+            "verbs": dict(sorted(verb_lengths.items())),
+            "adjectives": dict(sorted(adjective_lengths.items())),
+            "adverbs": dict(sorted(adverb_lengths.items()))
+        },
+        "most_common_words": {word: count for word, count in word_counts.most_common(30)},
+        "most_common_nouns": {word: count for word, count in noun_counts.most_common(30)},
+        "most_common_verbs": {word: count for word, count in verb_counts.most_common(30)},
+        "most_common_adjectives": {word: count for word, count in adjective_counts.most_common(30)},
+        "most_common_adverbs": {word: count for word, count in adverb_counts.most_common(30)},
         "most_common_bigrams": {bigram: count for bigram, count in bigram_counts.most_common(10)},
-        "most_common_trigrams": {trigram: count for trigram, count in trigram_counts.most_common(10)}
+        "most_common_trigrams": {trigram: count for trigram, count in trigram_counts.most_common(10)},
     }
 
     # Save the results to a file
