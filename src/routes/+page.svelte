@@ -1,12 +1,13 @@
 <script>
   import { goto } from "$app/navigation";
+  import { base } from "$app/paths";
 
   export let data;
   let subreddit = "";
 
   function handleSearch() {
     if (subreddit.trim()) {
-      goto(`/subreddit/${subreddit.trim()}`);
+      goto(`${base}/subreddit/${subreddit.trim()}`);
     }
   }
 </script>
@@ -44,7 +45,7 @@
       <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {#each data.subreddits as sub}
           <a
-            href="/subreddit/{sub}"
+            href="{base}/subreddit/{sub}"
             class="rounded-lg bg-white p-4 text-center shadow-md transition-transform hover:scale-105"
           >
             <span class="font-semibold text-blue-600">/r/{sub}</span>
