@@ -8,6 +8,7 @@
   // pages by setting this here, but should prerender as many as possible to
   // avoid large performance and SEO impacts
   export const prerender = true;
+  export const trailingSlash = "always";
 </script>
 
 <svelte:head>
