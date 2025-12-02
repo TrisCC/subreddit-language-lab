@@ -3,7 +3,7 @@ import path from "path";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
-  const dataProcessedDir = path.join(process.cwd(), "data_processed");
+  const dataProcessedDir = path.join(process.cwd(), "static", "data_processed");
 
   try {
     const files = await fs.readdir(dataProcessedDir);

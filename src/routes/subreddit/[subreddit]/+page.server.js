@@ -7,6 +7,7 @@ export async function load({ params }) {
   const subreddit = params.subreddit;
   const filePath = path.join(
     process.cwd(),
+    "static",
     "data_processed",
     `${subreddit}_analysis.json`
   );
@@ -19,5 +20,18 @@ export async function load({ params }) {
     };
   } catch (e) {
     throw error(404, "Subreddit analysis not found");
+  }
+}
+
+/** @type {import('./$types').EntryGenerator} */
+export async function entries() {
+  const dataProcessedDir = path.join(process.cwd(), "static", "data_processed");
+  try {
+    const files = await fs.readdir(dataProcessedDir);
+    return files
+      .filter((file) => file.endsWith("_analysis.json"))
+      .map((file) => ({ subreddit: file.replace("_analysis.json", "") }));
+  } catch (e) {
+    return [];
   }
 }
