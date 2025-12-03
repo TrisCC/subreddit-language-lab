@@ -2,6 +2,7 @@
   import WordCloud from "$lib/WordCloud.svelte";
   import PieChart from "$lib/PieChart.svelte";
   import BarChart from "$lib/BarChart.svelte";
+  import CategoryBarChart from "$lib/CategoryBarChart.svelte";
   export let data;
 </script>
 
@@ -41,52 +42,15 @@
     <h2 class="text-2xl font-semibold text-gray-700">
       Most Common Words by Category
     </h2>
-    <div class="mt-4 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-      <div>
-        <h3 class="text-xl font-semibold text-gray-600">Nouns</h3>
-        <ul class="mt-2 space-y-1">
-          {#each Object.entries(data.analysis.most_common_nouns) as [word, count]}
-            <li class="flex justify-between">
-              <span class="text-gray-700">{word}</span>
-              <span class="font-medium text-gray-800">{count}</span>
-            </li>
-          {/each}
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xl font-semibold text-gray-600">Verbs</h3>
-        <ul class="mt-2 space-y-1">
-          {#each Object.entries(data.analysis.most_common_verbs) as [word, count]}
-            <li class="flex justify-between">
-              <span class="text-gray-700">{word}</span>
-              <span class="font-medium text-gray-800">{count}</span>
-            </li>
-          {/each}
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xl font-semibold text-gray-600">Adjectives</h3>
-        <ul class="mt-2 space-y-1">
-          {#each Object.entries(data.analysis.most_common_adjectives) as [word, count]}
-            <li class="flex justify-between">
-              <span class="text-gray-700">{word}</span>
-              <span class="font-medium text-gray-800">{count}</span>
-            </li>
-          {/each}
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xl font-semibold text-gray-600">Adverbs</h3>
-        <ul class="mt-2 space-y-1">
-          {#each Object.entries(data.analysis.most_common_adverbs) as [word, count]}
-            <li class="flex justify-between">
-              <span class="text-gray-700">{word}</span>
-              <span class="font-medium text-gray-800">{count}</span>
-            </li>
-          {/each}
-        </ul>
-      </div>
-    </div>
+    <CategoryBarChart
+      categories={{
+        nouns: data.analysis.most_common_nouns,
+        verbs: data.analysis.most_common_verbs,
+        adjectives: data.analysis.most_common_adjectives,
+        adverbs: data.analysis.most_common_adverbs,
+      }}
+      categoryNames={["Nouns", "Verbs", "Adjectives", "Adverbs"]}
+    />
   </div>
 
   <!-- N-grams and Word Lengths -->

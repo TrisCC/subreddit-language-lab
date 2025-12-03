@@ -6,8 +6,9 @@
   let svg: SVGSVGElement;
   let container: HTMLDivElement;
 
-  onMount(() => {
-    if (!container) return;
+  function drawChart() {
+    if (!container || !svg) return;
+    d3.select(svg).selectAll("*").remove();
     const margin = { top: 20, right: 30, bottom: 40, left: 100 };
     const width = container.clientWidth;
     const height = Math.max(400, data.length * 28 + margin.top + margin.bottom);
@@ -65,7 +66,10 @@
       .text((d) => d[1])
       .style("font-size", "13px")
       .style("fill", "#333");
-  });
+  }
+
+  onMount(drawChart);
+  $: drawChart();
 </script>
 
 <div class="bar-chart-container" bind:this={container}>
