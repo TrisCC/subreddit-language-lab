@@ -1,4 +1,5 @@
 <script>
+  import WordCloud from "$lib/WordCloud.svelte";
   export let data;
 </script>
 
@@ -6,6 +7,14 @@
   <h1 class="text-4xl font-bold text-gray-800">
     Analysis for /r/{data.subreddit}
   </h1>
+
+  <!-- Word Cloud -->
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+    <!-- <h2 class="text-2xl font-semibold text-gray-700">
+      Most Common Words Cloud
+    </h2> -->
+    <WordCloud words={Object.entries(data.analysis.most_common_words)} />
+  </div>
 
   <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
     <!-- POS Ratios -->
