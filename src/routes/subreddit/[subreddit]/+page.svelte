@@ -3,6 +3,7 @@
   import PieChart from "$lib/PieChart.svelte";
   import BarChart from "$lib/BarChart.svelte";
   import CategoryBarChart from "$lib/CategoryBarChart.svelte";
+  import NgramBarChart from "$lib/NgramBarChart.svelte";
   export let data;
 </script>
 
@@ -54,34 +55,14 @@
   </div>
 
   <!-- N-grams and Word Lengths -->
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+  <div class="mt-8 w-full grid grid-cols-1 gap-8">
     <!-- N-grams -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
+    <div class="rounded-lg bg-white p-6 shadow-md w-full">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
-      <div class="mt-4 grid grid-cols-1 gap-8 sm:grid-cols-2">
-        <div>
-          <h3 class="text-xl font-semibold text-gray-600">Bigrams</h3>
-          <ul class="mt-2 space-y-1">
-            {#each Object.entries(data.analysis.most_common_bigrams) as [ngram, count]}
-              <li class="flex justify-between">
-                <span class="text-gray-700">{ngram}</span>
-                <span class="font-medium text-gray-800">{count}</span>
-              </li>
-            {/each}
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-gray-600">Trigrams</h3>
-          <ul class="mt-2 space-y-1">
-            {#each Object.entries(data.analysis.most_common_trigrams) as [ngram, count]}
-              <li class="flex justify-between">
-                <span class="text-gray-700">{ngram}</span>
-                <span class="font-medium text-gray-800">{count}</span>
-              </li>
-            {/each}
-          </ul>
-        </div>
-      </div>
+      <NgramBarChart
+        bigrams={data.analysis.most_common_bigrams}
+        trigrams={data.analysis.most_common_trigrams}
+      />
     </div>
 
     <!-- Word Length Distributions -->
