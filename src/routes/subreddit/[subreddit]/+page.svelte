@@ -1,6 +1,7 @@
 <script>
   import WordCloud from "$lib/WordCloud.svelte";
   import PieChart from "$lib/PieChart.svelte";
+  import BarChart from "$lib/BarChart.svelte";
   export let data;
 </script>
 
@@ -29,14 +30,9 @@
     <!-- Most Common Words -->
     <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
-      <ul class="mt-4 space-y-2">
-        {#each Object.entries(data.analysis.most_common_words) as [word, count]}
-          <li class="flex justify-between">
-            <span class="font-medium text-gray-600">{word}</span>
-            <span class="text-gray-800">{count}</span>
-          </li>
-        {/each}
-      </ul>
+      <BarChart
+        data={Object.entries(data.analysis.most_common_words).slice(0, 15)}
+      />
     </div>
   </div>
 
