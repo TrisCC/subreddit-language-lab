@@ -1,5 +1,6 @@
 <script>
   import WordCloud from "$lib/WordCloud.svelte";
+  import PieChart from "$lib/PieChart.svelte";
   export let data;
 </script>
 
@@ -22,14 +23,7 @@
       <h2 class="text-2xl font-semibold text-gray-700">
         Grammatical Category Ratios
       </h2>
-      <ul class="mt-4 space-y-2">
-        {#each Object.entries(data.analysis.pos_ratios) as [pos, ratio]}
-          <li class="flex justify-between">
-            <span class="font-medium text-gray-600">{pos}</span>
-            <span class="text-gray-800">{(ratio * 100).toFixed(2)}%</span>
-          </li>
-        {/each}
-      </ul>
+      <PieChart data={Object.entries(data.analysis.pos_ratios)} />
     </div>
 
     <!-- Most Common Words -->
