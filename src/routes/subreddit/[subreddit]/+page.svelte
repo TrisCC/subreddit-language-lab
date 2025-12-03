@@ -4,6 +4,7 @@
   import BarChart from "$lib/BarChart.svelte";
   import CategoryBarChart from "$lib/CategoryBarChart.svelte";
   import NgramBarChart from "$lib/NgramBarChart.svelte";
+  import StackedBarChart from "$lib/StackedBarChart.svelte";
   export let data;
 </script>
 
@@ -66,14 +67,20 @@
     </div>
 
     <!-- Word Length Distributions -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
+    <div class="rounded-lg bg-white p-6 shadow-md w-full">
       <h2 class="text-2xl font-semibold text-gray-700">
         Word Length Distributions
       </h2>
-      <!-- This part can be visualized with a chart library -->
-      <div class="mt-4 text-gray-600">
-        Visualization of word length distributions will be implemented here.
-      </div>
+      <StackedBarChart
+        data={{
+          nouns: data.analysis.word_length_distributions.nouns,
+          verbs: data.analysis.word_length_distributions.verbs,
+          adjectives: data.analysis.word_length_distributions.adjectives,
+          adverbs: data.analysis.word_length_distributions.adverbs,
+        }}
+        categories={["Nouns", "Verbs", "Adjectives", "Adverbs"]}
+        colors={["#3b82f6", "#10b981", "#f59e42", "#ef4444"]}
+      />
     </div>
   </div>
 </div>
