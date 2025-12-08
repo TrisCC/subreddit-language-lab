@@ -14,11 +14,11 @@
   </h1>
 
   <!-- Word Cloud -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md md:items-start">
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
     <!-- POS Ratios -->
     <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">
@@ -52,32 +52,29 @@
     />
   </div>
 
-  <!-- N-grams and Word Lengths -->
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
-    <!-- N-grams -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
-      <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
-      <NgramBarChart
-        bigrams={data.analysis.most_common_bigrams}
-        trigrams={data.analysis.most_common_trigrams}
-      />
-    </div>
+  <!-- N-grams -->
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
+    <NgramBarChart
+      bigrams={data.analysis.most_common_bigrams}
+      trigrams={data.analysis.most_common_trigrams}
+    />
+  </div>
 
-    <!-- Word Length Distributions -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
-      <h2 class="text-2xl font-semibold text-gray-700">
-        Word Length Distributions
-      </h2>
-      <StackedBarChart
-        data={{
-          nouns: data.analysis.word_length_distributions.nouns,
-          verbs: data.analysis.word_length_distributions.verbs,
-          adjectives: data.analysis.word_length_distributions.adjectives,
-          adverbs: data.analysis.word_length_distributions.adverbs,
-        }}
-        categories={["Nouns", "Verbs", "Adjectives", "Adverbs"]}
-        colors={["#3b82f6", "#10b981", "#f59e42", "#ef4444"]}
-      />
-    </div>
+  <!-- Word Length Distributions -->
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-700">
+      Word Length Distributions
+    </h2>
+    <StackedBarChart
+      data={{
+        nouns: data.analysis.word_length_distributions.nouns,
+        verbs: data.analysis.word_length_distributions.verbs,
+        adjectives: data.analysis.word_length_distributions.adjectives,
+        adverbs: data.analysis.word_length_distributions.adverbs,
+      }}
+      categories={["Nouns", "Verbs", "Adjectives", "Adverbs"]}
+      colors={["#3b82f6", "#10b981", "#f59e42", "#ef4444"]}
+    />
   </div>
 </div>

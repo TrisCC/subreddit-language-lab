@@ -11,7 +11,7 @@
     d3.select(svg).selectAll("*").remove();
     const margin = { top: 20, right: 30, bottom: 40, left: 100 };
     const width = container.clientWidth;
-    const height = Math.max(400, data.length * 28 + margin.top + margin.bottom);
+    const height = Math.max(320, data.length * 28 + margin.top + margin.bottom);
 
     d3.select(svg).attr("width", width).attr("height", height);
 

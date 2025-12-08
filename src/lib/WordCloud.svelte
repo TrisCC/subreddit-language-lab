@@ -31,8 +31,8 @@
             ({
               text: d[0],
               size: sizeScale(d[1]),
-            }) as MyWord
-        )
+            }) as MyWord,
+        ),
       )
       .padding(5)
       .rotate(0)
@@ -61,5 +61,5 @@
 </script>
 
 <div class="wordcloud-container" bind:this={container}>
-  <svg bind:this={svg} style="width: 100%; height: auto;" />
+  <svg bind:this={svg} style="width: 100%; height: 350px;" />
 </div>
