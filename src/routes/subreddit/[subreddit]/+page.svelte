@@ -14,16 +14,13 @@
   </h1>
 
   <!-- Word Cloud -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md max-w-2xl mx-auto">
-    <!-- <h2 class="text-2xl font-semibold text-gray-700">
-      Most Common Words Cloud
-    </h2> -->
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
     <!-- POS Ratios -->
-    <div class="rounded-lg bg-white p-6 shadow-md max-w-xl mx-auto">
+    <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">
         Grammatical Category Ratios
       </h2>
@@ -31,7 +28,7 @@
     </div>
 
     <!-- Most Common Words -->
-    <div class="rounded-lg bg-white p-6 shadow-md max-w-xl mx-auto">
+    <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
       <BarChart
         data={Object.entries(data.analysis.most_common_words).slice(0, 15)}
@@ -40,7 +37,7 @@
   </div>
 
   <!-- Categorized Common Words -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md max-w-2xl mx-auto">
+  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
     <h2 class="text-2xl font-semibold text-gray-700">
       Most Common Words by Category
     </h2>
@@ -56,9 +53,9 @@
   </div>
 
   <!-- N-grams and Word Lengths -->
-  <div class="mt-8 grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
     <!-- N-grams -->
-    <div class="rounded-lg bg-white p-6 shadow-md max-w-2xl mx-auto">
+    <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
       <NgramBarChart
         bigrams={data.analysis.most_common_bigrams}
@@ -67,7 +64,7 @@
     </div>
 
     <!-- Word Length Distributions -->
-    <div class="rounded-lg bg-white p-6 shadow-md max-w-2xl mx-auto">
+    <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">
         Word Length Distributions
       </h2>
