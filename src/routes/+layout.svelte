@@ -1,7 +1,13 @@
 <script lang="ts">
+  import MenuBar from "$lib/MenuBar.svelte";
   import favicon from "$lib/assets/favicon.svg";
+  import type { Snippet } from "svelte";
 
-  let { children } = $props();
+  interface LayoutData {
+    subreddits: any[]; // replace `any` with a more specific type if you know the shape
+  }
+
+  let { children, data }: { children: Snippet; data: LayoutData } = $props();
   import "../app.css";
 
   // If you're using a fallback (i.e. SPA mode) you don't need to prerender all
@@ -14,5 +20,7 @@
 <svelte:head>
   <link rel="icon" href={favicon} />
 </svelte:head>
+
+<MenuBar subreddits={data.subreddits} />
 
 {@render children()}
