@@ -13,8 +13,8 @@
     return data[cat.toLowerCase()] || {};
   }
 
-  onMount(() => {
-    if (!container) return;
+  function drawStackedBarChart() {
+    if (!container || !svg) return;
     d3.select(svg).selectAll("*").remove();
     const margin = { top: 20, right: 30, bottom: 60, left: 50 };
     const width = container.clientWidth;
@@ -24,7 +24,7 @@
 
     // Get all word lengths
     const lengths = Array.from(
-      new Set(categories.flatMap((cat) => Object.keys(safeCategory(cat)))),
+      new Set(categories.flatMap((cat) => Object.keys(safeCategory(cat))))
     )
       .map(Number)
       .sort((a, b) => a - b);
@@ -57,7 +57,7 @@
       .domain([
         0,
         d3.max(stackData, (d) =>
-          categories.reduce((sum, cat) => sum + d[cat], 0),
+          categories.reduce((sum, cat) => sum + d[cat], 0)
         ) || 1,
       ])
       .nice()
@@ -97,7 +97,7 @@
       .append("g")
       .attr(
         "transform",
-        `translate(${width / 2 - (categories.length * 50) / 2},${height - margin.bottom + 30})`,
+        `translate(${width / 2 - (categories.length * 50) / 2},${height - margin.bottom + 30})`
       );
     categories.forEach((cat, i) => {
       const legendItem = legend
@@ -115,7 +115,10 @@
         .text(cat)
         .style("font-size", "15px");
     });
-  });
+  }
+
+  onMount(drawStackedBarChart);
+  $: if (data) drawStackedBarChart();
 </script>
 
 <div class="stacked-bar-chart-container" bind:this={container}>

@@ -7,9 +7,14 @@
 
   function getTop(type: string) {
     const source = type === "Bigrams" ? bigrams : trigrams;
+    if (!source) return [];
     return Object.entries(source)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10);
+  }
+
+  $: if (bigrams || trigrams) {
+    selected = "Bigrams";
   }
 </script>
 

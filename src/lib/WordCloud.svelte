@@ -12,8 +12,9 @@
   let svg: SVGSVGElement;
   let container: HTMLDivElement;
 
-  onMount(() => {
-    if (!container) return;
+  function drawWordCloud() {
+    if (!container || !svg) return;
+    d3.select(svg).selectAll("*").remove();
 
     const width = container.clientWidth;
     const height = Math.round(width * 0.66);
@@ -31,8 +32,8 @@
             ({
               text: d[0],
               size: sizeScale(d[1]),
-            }) as MyWord,
-        ),
+            }) as MyWord
+        )
       )
       .padding(5)
       .rotate(0)
@@ -57,7 +58,10 @@
         .attr("transform", (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
         .text((d) => d.text || "");
     }
-  });
+  }
+
+  onMount(drawWordCloud);
+  $: if (words) drawWordCloud();
 </script>
 
 <div class="wordcloud-container" bind:this={container}>

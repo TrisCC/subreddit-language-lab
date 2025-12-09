@@ -69,7 +69,7 @@
   }
 
   onMount(drawChart);
-  $: drawChart();
+  $: if (data) drawChart();
 </script>
 
 <div class="bar-chart-container" bind:this={container}>

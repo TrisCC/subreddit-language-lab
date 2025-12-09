@@ -13,9 +13,15 @@
   let selectedCategory = categoryNames[0];
 
   function getTopWords(cat: string) {
-    return Object.entries(categories[cat.toLowerCase()])
+    const categoryData = categories[cat.toLowerCase()];
+    if (!categoryData) return [];
+    return Object.entries(categoryData)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 15);
+  }
+
+  $: if (categories) {
+    selectedCategory = categoryNames[0];
   }
 </script>
 

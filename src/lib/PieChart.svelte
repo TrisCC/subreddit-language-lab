@@ -23,8 +23,9 @@
     return main;
   }
 
-  onMount(() => {
-    if (!container) return;
+  function drawPieChart() {
+    if (!container || !svg) return;
+    d3.select(svg).selectAll("*").remove();
 
     const processedData = preprocessData(data);
 
@@ -115,7 +116,10 @@
       .attr("x", 0)
       .attr("dy", "1.2em")
       .text((d) => `${(d.data[1] * 100).toFixed(1)}%`);
-  });
+  }
+
+  onMount(drawPieChart);
+  $: if (data) drawPieChart();
 </script>
 
 <div
