@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import MenuBar from "$lib/MenuBar.svelte";
   import favicon from "$lib/assets/favicon.svg";
   import type { Snippet } from "svelte";
@@ -21,6 +22,8 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-<MenuBar subreddits={data.subreddits} />
+{#if $page.route.id !== "/"}
+  <MenuBar subreddits={data.subreddits} />
+{/if}
 
 {@render children()}

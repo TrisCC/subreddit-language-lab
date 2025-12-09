@@ -6,6 +6,7 @@
   let subreddit = "";
   let suggestions: string[] = [];
   let showNoDataPopup = false;
+  let activeSuggestion = -1;
 
   function updateSuggestions() {
     if (subreddit.trim() === "") {
@@ -15,15 +16,22 @@
         s.toLowerCase().startsWith(subreddit.toLowerCase())
       );
     }
+    activeSuggestion = -1;
   }
 
   function handleSearch() {
-    const searchSub = subreddit.trim().toLowerCase();
+    const subToSearch =
+      activeSuggestion > -1 ? suggestions[activeSuggestion] : subreddit;
+    const searchSub = subToSearch
+      ? String(subToSearch).trim().toLowerCase()
+      : "";
+
     if (searchSub) {
       if (subreddits.map((s) => s.toLowerCase()).includes(searchSub)) {
         goto(`${base}/subreddit/${searchSub}`);
         subreddit = "";
         suggestions = [];
+        activeSuggestion = -1;
       } else {
         showNoDataPopup = true;
       }
@@ -33,7 +41,24 @@
   function selectSuggestion(suggestion: string) {
     subreddit = suggestion;
     suggestions = [];
+    activeSuggestion = -1;
     handleSearch();
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (suggestions.length === 0) return;
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      activeSuggestion = (activeSuggestion + 1) % suggestions.length;
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      activeSuggestion =
+        (activeSuggestion - 1 + suggestions.length) % suggestions.length;
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch();
+    }
   }
 </script>
 
@@ -46,6 +71,7 @@
           type="text"
           bind:value={subreddit}
           on:input={updateSuggestions}
+          on:keydown={handleKeydown}
           placeholder="Search subreddit..."
           class="flex-grow rounded-l-md border-gray-600 bg-gray-700 p-2 focus:outline-none"
           autocomplete="off"
@@ -61,13 +87,15 @@
         <ul
           class="absolute z-10 mt-1 w-full rounded-md border border-gray-600 bg-gray-700 shadow-lg"
         >
-          {#each suggestions as suggestion}
+          {#each suggestions as suggestion, i}
             <li
-              class="cursor-pointer p-2 hover:bg-gray-600"
+              class="cursor-pointer p-2 {activeSuggestion === i
+                ? 'bg-gray-600'
+                : ''}"
               on:click={() => selectSuggestion(suggestion)}
               on:keydown={() => {}}
               role="option"
-              aria-selected="false"
+              aria-selected={activeSuggestion === i}
               tabindex="0"
             >
               {suggestion}
