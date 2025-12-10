@@ -17,7 +17,7 @@
     d3.select(svg).selectAll("*").remove();
 
     const width = container.clientWidth;
-    const height = Math.round(width * 0.66);
+    const height = container.clientHeight;
 
     d3.select(svg).attr("viewBox", `0 0 ${width} ${height}`);
 
@@ -64,6 +64,6 @@
   $: if (words) drawWordCloud();
 </script>
 
-<div class="wordcloud-container" bind:this={container}>
-  <svg bind:this={svg} style="width: 100%; height: 350px;" />
+<div class="wordcloud-container h-full w-full" bind:this={container}>
+  <svg bind:this={svg} style="width: 100%; height: 100%;" />
 </div>

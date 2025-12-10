@@ -49,7 +49,10 @@
   </div>
 
   <!-- Word Cloud -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md md:items-start">
+  <div
+    class="mt-8 rounded-lg bg-white p-6 shadow-md md:items-start"
+    style="height: 40vh;"
+  >
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
