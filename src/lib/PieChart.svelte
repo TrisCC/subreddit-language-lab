@@ -122,6 +122,8 @@
   $: if (data) drawPieChart();
 </script>
 
+<svelte:window on:resize={drawPieChart} />
+
 <div
   class="pie-chart-container"
   bind:this={container}

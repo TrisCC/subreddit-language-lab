@@ -16,18 +16,23 @@
     if (!container || !svg) return;
     d3.select(svg).selectAll("*").remove();
 
+    const topWords = words.slice(0, 20);
+
     const width = container.clientWidth;
     const height = container.clientHeight;
 
     d3.select(svg).attr("viewBox", `0 0 ${width} ${height}`);
 
-    const maxCount = d3.max(words, (d) => d[1]) || 1;
-    const sizeScale = d3.scaleSqrt().domain([0, maxCount]).range([10, 100]);
+    const maxCount = d3.max(topWords, (d) => d[1]) || 1;
+
+    // Make font size range responsive
+    const fontSizeRange = width < 768 ? [8, 50] : [10, 100];
+    const sizeScale = d3.scaleSqrt().domain([0, maxCount]).range(fontSizeRange);
 
     const layout = cloud()
       .size([width, height])
       .words(
-        words.map(
+        topWords.map(
           (d) =>
             ({
               text: d[0],
@@ -63,6 +68,8 @@
   onMount(drawWordCloud);
   $: if (words) drawWordCloud();
 </script>
+
+<svelte:window on:resize={drawWordCloud} />
 
 <div class="wordcloud-container h-full w-full" bind:this={container}>
   <svg bind:this={svg} style="width: 100%; height: 100%;" />

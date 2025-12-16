@@ -72,6 +72,8 @@
   $: if (data) drawChart();
 </script>
 
+<svelte:window on:resize={drawChart} />
+
 <div class="bar-chart-container" bind:this={container}>
   <svg bind:this={svg} style="width: 100%; height: auto;" />
 </div>

@@ -121,6 +121,8 @@
   $: if (data) drawStackedBarChart();
 </script>
 
+<svelte:window on:resize={drawStackedBarChart} />
+
 <div class="stacked-bar-chart-container" bind:this={container}>
   <svg bind:this={svg} style="width: 100%; height: auto;" />
 </div>
