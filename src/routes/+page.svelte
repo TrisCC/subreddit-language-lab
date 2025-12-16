@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Subreddit Language Lab</title>
+</svelte:head>
+
 <script>
   import { goto } from "$app/navigation";
   import { base } from "$app/paths";

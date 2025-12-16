@@ -21,6 +21,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>/r/{data.subreddit} - Subreddit Language Lab</title>
+</svelte:head>
+
 <div class="container mx-auto p-8">
   <div class="flex justify-between items-center">
     <h1 class="text-4xl font-bold text-gray-800">
