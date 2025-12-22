@@ -1,7 +1,3 @@
-<svelte:head>
-	<title>Subreddit Language Lab</title>
-</svelte:head>
-
 <script>
   import { goto } from "$app/navigation";
   import { base } from "$app/paths";
@@ -19,7 +15,7 @@
       suggestions = [];
     } else {
       suggestions = data.subreddits.filter((s) =>
-        s.toLowerCase().startsWith(subreddit.toLowerCase())
+        s.toLowerCase().startsWith(subreddit.toLowerCase()),
       );
     }
   }
@@ -45,10 +41,19 @@
   }
 </script>
 
+<svelte:head>
+  <title>Subreddit Language Lab</title>
+</svelte:head>
+
 <div
   class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8"
 >
   <div class="text-center">
+    <img
+      src="/logo.png"
+      alt="Subreddit Language Lab logo"
+      class="mx-auto mb-4 h-24 w-24"
+    />
     <h1 class="text-5xl font-bold text-gray-800">Subreddit Language Lab</h1>
     <p class="mt-2 text-lg text-gray-600">
       Analyze and explore the language of your favorite subreddits
@@ -61,7 +66,7 @@
         bind:value={subreddit}
         on:input={updateSuggestions}
         placeholder="Enter a subreddit name"
-        class="flex-grow rounded-l-md border-2 border-r-0 border-gray-300 p-3 focus:border-blue-500 focus:outline-none"
+        class="grow rounded-l-md border-2 border-r-0 border-gray-300 p-3 focus:border-blue-500 focus:outline-none"
         autocomplete="off"
       />
       <button
