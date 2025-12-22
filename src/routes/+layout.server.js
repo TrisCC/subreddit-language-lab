@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 
 export const prerender = true;
+export const trailingSlash = "always";
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
