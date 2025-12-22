@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
+  import { base } from "$app/paths";
 
   export let data;
   let subreddit = "";
@@ -23,7 +24,7 @@
     const searchSub = subreddit.trim().toLowerCase();
     if (searchSub) {
       if (data.subreddits.map((s) => s.toLowerCase()).includes(searchSub)) {
-        goto(`/subreddit/${searchSub}`);
+        goto(`${base}/subreddit/${searchSub}`);
       } else {
         showNoDataPopup = true;
       }
@@ -49,7 +50,7 @@
 >
   <div class="text-center">
     <img
-      src="/logo.png"
+      src="{base}/logo.png"
       alt="Subreddit Language Lab logo"
       class="mx-auto mb-4 h-24 w-24"
     />
@@ -120,7 +121,7 @@
       <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
         {#each data.subreddits as sub}
           <a
-            href="/subreddit/{sub}"
+            href="{base}/subreddit/{sub}"
             class="rounded-lg bg-white p-4 text-center shadow-md transition-transform hover:scale-105"
           >
             <span class="font-semibold text-blue-600">/r/{sub}</span>
