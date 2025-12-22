@@ -1,6 +1,5 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { base } from "$app/paths";
 
   export let subreddits: string[] = [];
   let subreddit = "";
@@ -28,7 +27,7 @@
 
     if (searchSub) {
       if (subreddits.map((s) => s.toLowerCase()).includes(searchSub)) {
-        goto(`${base}/subreddit/${searchSub}`);
+        goto(`/subreddit/${searchSub}`);
         subreddit = "";
         suggestions = [];
         activeSuggestion = -1;
@@ -64,7 +63,7 @@
 
 <header class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
   <div class="container mx-auto flex justify-between items-center">
-    <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
+    <a href="/" class="text-2xl font-bold hover:text-gray-300">
       <img src="/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
     </a>
     <div class="relative w-full max-w-xs">
