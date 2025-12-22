@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import MenuBar from "$lib/MenuBar.svelte";
-  import favicon from "$lib/assets/favicon.svg";
+  import favicon from "$lib/assets/favicon.ico";
   import type { Snippet } from "svelte";
 
   interface LayoutData {
