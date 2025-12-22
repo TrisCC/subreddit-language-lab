@@ -6,6 +6,7 @@ from collections import Counter
 import json
 
 nlp = spacy.load("en_core_web_sm")
+nlp.max_length = 2000000 # Increase max length to handle large documents
 
 def main():
     print("==== START ====")
@@ -39,7 +40,7 @@ def main():
     #     print(f"- {file}")
 
     # Iterate through each CSV file and load it into a DataFrame
-    for file in csv_files:
+    for file in csv_files[-17:]:
         file_path = os.path.join(reddit_data_dir, file)
         df = load_csv(file_path)
         if df is not None:
@@ -126,7 +127,7 @@ def analyze_data(df, file_name):
 
     # Save the results to a file
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    data_processed_dir = os.path.abspath(os.path.join(current_dir, '..', 'data_processed'))
+    data_processed_dir = os.path.abspath(os.path.join(current_dir, '..', 'static/data_processed'))
     if not os.path.exists(data_processed_dir):
         os.makedirs(data_processed_dir)
         
