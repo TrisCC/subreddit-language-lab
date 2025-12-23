@@ -1,0 +1,302 @@
+{
+    "anime": {
+        "display_name": "anime",
+        "subscribers": 14095742,
+        "description": "Reddit's premier anime community.",
+        "created_date": "2008-01-25"
+    },
+    "art": {
+        "display_name": "Art",
+        "subscribers": 22306118,
+        "description": "Welcome to r/Art, a subreddit for artists and art lovers alike! We hope to create a welcoming environment for those passionate about art and hope you can find a place here! Have an issue? Please reach out to us via the ModMail where we can assist you.",
+        "created_date": "2008-01-25"
+    },
+    "askreddit": {
+        "display_name": "AskReddit",
+        "subscribers": 57373093,
+        "description": "r/AskReddit is the place to ask and answer thought-provoking questions.",
+        "created_date": "2008-01-25"
+    },
+    "askscience": {
+        "display_name": "askscience",
+        "subscribers": 26188359,
+        "description": "Ask a science question, get a science answer.",
+        "created_date": "2008-09-05"
+    },
+    "aww": {
+        "display_name": "aww",
+        "subscribers": 37645138,
+        "description": "Things that make you go AWW! -- like puppies, bunnies, babies, and so on...\n\nFeel free to post original pictures and videos of cute things.",
+        "created_date": "2008-01-25"
+    },
+    "books": {
+        "display_name": "books",
+        "subscribers": 26957338,
+        "description": "This is a moderated subreddit. It is our intent and purpose to foster and encourage in-depth discussion about all things related to books, authors, genres, or publishing in a safe, supportive environment. If you're looking for help with a personal book recommendation, consult our Weekly Recommendation Thread, Suggested Reading page, or ask in r/suggestmeabook.",
+        "created_date": "2008-01-25"
+    },
+    "creepy": {
+        "display_name": "creepy",
+        "subscribers": 14794294,
+        "description": "All things creepy!",
+        "created_date": "2009-10-20"
+    },
+    "dataisbeautiful": {
+        "display_name": "dataisbeautiful",
+        "subscribers": 21667651,
+        "description": "DataIsBeautiful is for visualizations that effectively convey information. \n \n Aesthetics are an important part of information visualization, but pretty pictures are not the sole aim of this subreddit.",
+        "created_date": "2012-02-15"
+    },
+    "diy": {
+        "display_name": "DIY",
+        "subscribers": 27351207,
+        "description": "DIY",
+        "created_date": "2008-01-25"
+    },
+    "documentaries": {
+        "display_name": "Documentaries",
+        "subscribers": 20303056,
+        "description": "tl;dw /r/Documentaries is reddit's main subreddit for documentaries. Please read our community rules.",
+        "created_date": "2008-03-21"
+    },
+    "earthporn": {
+        "display_name": "EarthPorn",
+        "subscribers": 23599377,
+        "description": "The internet's largest community of landscape photographers and Earth lovers.",
+        "created_date": "2011-02-14"
+    },
+    "explainlikeimfive": {
+        "display_name": "explainlikeimfive",
+        "subscribers": 23353367,
+        "description": "Explain Like I'm Five is the best forum and archive on the internet for layperson-friendly explanations.\n\n\nDon't Panic!",
+        "created_date": "2011-07-28"
+    },
+    "food": {
+        "display_name": "food",
+        "subscribers": 24384707,
+        "description": "The internet's number one place for original food images and more!",
+        "created_date": "2008-01-25"
+    },
+    "funny": {
+        "display_name": "funny",
+        "subscribers": 66894588,
+        "description": "Reddit's largest humor depository",
+        "created_date": "2008-01-25"
+    },
+    "futurology": {
+        "display_name": "Futurology",
+        "subscribers": 21580995,
+        "description": "A subreddit devoted to the field of Future(s) Studies and evidence-based speculation about the development of humanity, technology, and civilization.\n\n\n\n\n --------   You can also find us in the fediverse at - https://futurology.today",
+        "created_date": "2011-12-12"
+    },
+    "gaming": {
+        "display_name": "gaming",
+        "subscribers": 46980067,
+        "description": "The Number One Gaming forum on the Internet.",
+        "created_date": "2007-09-17"
+    },
+    "getmotivated": {
+        "display_name": "GetMotivated",
+        "subscribers": 24013298,
+        "description": "Welcome to /r/GetMotivated! We're glad you made it. This is the subreddit that will help you finally get up and do what you know you need to do. It's the subreddit to give and receive motivation through pictures, videos, text, music, AMA's personal stories, and anything and everything that you find particularly motivating and/or inspiring.\n\nSo browse around, ask questions, give advice, form/join a support group. But don't spend too much time here; you've got better things to do.",
+        "created_date": "2010-03-27"
+    },
+    "gifs": {
+        "display_name": "gifs",
+        "subscribers": 21492897,
+        "description": "\"GIFs\" is officially pronounced with a hard \"J\"",
+        "created_date": "2009-02-14"
+    },
+    "history": {
+        "display_name": "history",
+        "subscribers": 18651928,
+        "description": "r/history is a place for discussions about history. Feel free to submit interesting articles, tell us about this cool book you just read, or start a discussion about who everyone's favorite figure of minor French nobility is! This is a somewhat more serious subreddit compared to many others. Make sure to familiarize yourself with our rules and guidelines before participating. All posts must be manually approved by a moderator. Thanks!",
+        "created_date": "2008-01-25"
+    },
+    "iama": {
+        "display_name": "IAmA",
+        "subscribers": 22427416,
+        "description": "I Am A, where the mundane becomes fascinating and the outrageous suddenly seems normal.",
+        "created_date": "2009-05-28"
+    },
+    "interestingasfuck": {
+        "display_name": "interestingasfuck",
+        "subscribers": 15924169,
+        "description": "For anything truly interesting as fuck",
+        "created_date": "2008-04-10"
+    },
+    "internetisbeautiful": {
+        "display_name": "InternetIsBeautiful",
+        "subscribers": 16561930,
+        "description": "",
+        "created_date": "2012-07-25"
+    },
+    "jokes": {
+        "display_name": "Jokes",
+        "subscribers": 30355030,
+        "description": "The funniest sub on Reddit. Hundreds of jokes posted each day, and some of them aren't even reposts!",
+        "created_date": "2008-01-25"
+    },
+    "lifeprotips": {
+        "display_name": "LifeProTips",
+        "subscribers": 22916011,
+        "description": "Tips that improve your life in one way or another.",
+        "created_date": "2010-10-25"
+    },
+    "listentothis": {
+        "display_name": "listentothis",
+        "subscribers": 17881188,
+        "description": "The musical community of reddit -- Now reopened by the order of Reddit",
+        "created_date": "2009-05-06"
+    },
+    "memes": {
+        "display_name": "memes",
+        "subscribers": 35545655,
+        "description": "Memes!\n\nA way of describing cultural information being shared.\nAn element of a culture or system of behavior that may be considered to be passed from one individual to another by nongenetic means, especially imitation.",
+        "created_date": "2008-07-05"
+    },
+    "mildlyinteresting": {
+        "display_name": "mildlyinteresting",
+        "subscribers": 24880095,
+        "description": "Aww, cripes. I didn't know I'd have to write a description. How many words is that so far, like a hundred? Soooo, yeah. Mildly interesting stuff. Stuff that interests you. Mildly. It's in the name, ffs.",
+        "created_date": "2012-02-05"
+    },
+    "movies": {
+        "display_name": "movies",
+        "subscribers": 37110020,
+        "description": "/r/movies is the world's largest online film community, with over 37,000,000 members. Come on in and talk about movies with us!",
+        "created_date": "2008-01-25"
+    },
+    "music": {
+        "display_name": "Music",
+        "subscribers": 38261381,
+        "description": "Reddit’s #1 Music Community",
+        "created_date": "2008-01-25"
+    },
+    "news": {
+        "display_name": "news",
+        "subscribers": 31040173,
+        "description": "The place for news articles about current events in the United States and the rest of the world. Discuss it all here.",
+        "created_date": "2008-01-25"
+    },
+    "nostupidquestions": {
+        "display_name": "NoStupidQuestions",
+        "subscribers": 6760810,
+        "description": "Ask away!\n\nDisclaimer: This is an anonymous forum so answers may not be correct",
+        "created_date": "2013-02-02"
+    },
+    "nottheonion": {
+        "display_name": "nottheonion",
+        "subscribers": 25902543,
+        "description": "For true stories that you could have sworn were from The Onion.",
+        "created_date": "2008-10-25"
+    },
+    "oldschoolcool": {
+        "display_name": "OldSchoolCool",
+        "subscribers": 19403438,
+        "description": "/r/OldSchoolCool\n\n**History's cool kids, looking fantastic!**\n\nA pictorial and video celebration of history's coolest kids, everything from beatniks to bikers, mods to rude boys, hippies to ravers. And everything in between. \n\nIf you've found a photo, or a photo essay, of people from the past looking fantastic, here's the place to share it.",
+        "created_date": "2012-04-21"
+    },
+    "personalfinance": {
+        "display_name": "personalfinance",
+        "subscribers": 21492880,
+        "description": "Learn about budgeting, saving, getting out of debt, credit, investing, and retirement planning. Join our community, read the PF Wiki, and get on top of your finances!",
+        "created_date": "2009-02-09"
+    },
+    "pics": {
+        "display_name": "pics",
+        "subscribers": 33160524,
+        "description": "A place for photographs, pictures, and other images.",
+        "created_date": "2008-01-25"
+    },
+    "relationship_advice": {
+        "display_name": "relationship_advice",
+        "subscribers": 15606628,
+        "description": "Need help with your relationship? Whether it's romance, friendship, family, co-workers, or basic human interaction: we're here to help!",
+        "created_date": "2009-06-15"
+    },
+    "science": {
+        "display_name": "science",
+        "subscribers": 34299820,
+        "description": "This community is a place to share and discuss new scientific research. Read about the latest advances in astronomy, biology, medicine, physics, social science, and more. Find and submit new publications and popular science coverage of current research.",
+        "created_date": "2006-10-18"
+    },
+    "showerthoughts": {
+        "display_name": "Showerthoughts",
+        "subscribers": 34025424,
+        "description": "A subreddit for sharing those miniature epiphanies that make the mundane more amazing.",
+        "created_date": "2011-10-18"
+    },
+    "space": {
+        "display_name": "space",
+        "subscribers": 27787399,
+        "description": "Share &amp; discuss informative content on:\n\n* Astrophysics\n* Cosmology\n* Space Exploration\n* Planetary Science\n* Astrobiology",
+        "created_date": "2008-01-26"
+    },
+    "sports": {
+        "display_name": "sports",
+        "subscribers": 21959627,
+        "description": "Sports News and Highlights from the NFL, NBA, NHL, MLB, MLS, NCAA, F1, and other leagues around the world.",
+        "created_date": "2007-09-17"
+    },
+    "technology": {
+        "display_name": "technology",
+        "subscribers": 20041757,
+        "description": "Subreddit dedicated to the news and discussions about the creation and use of technology and its surrounding issues.",
+        "created_date": "2008-01-25"
+    },
+    "television": {
+        "display_name": "television",
+        "subscribers": 17953910,
+        "description": "The 2025 r/television survey is open, you can vote here: https://forms.gle/WJcLXmaYeGWYWvSj6\n\n---\n\nSubreddit for content primarily about and related to scripted television programming",
+        "created_date": "2008-01-25"
+    },
+    "tifu": {
+        "display_name": "tifu",
+        "subscribers": 18855150,
+        "description": "/r/TIFU means Today I Fucked Up",
+        "created_date": "2012-03-04"
+    },
+    "todayilearned": {
+        "display_name": "todayilearned",
+        "subscribers": 41166722,
+        "description": "You learn something new every day; what did you learn today?\nSubmit interesting and specific facts about something that you just found out here.",
+        "created_date": "2008-12-28"
+    },
+    "travel": {
+        "display_name": "travel",
+        "subscribers": 14104498,
+        "description": "r/travel is a community about exploring the world. Your pictures, questions, stories, or any good content is welcome. \n\nPlease read the rules and pinned announcements before posting. Failure to do so may result in a permanent ban. If you've never contributed positively before being banned, your chance of appeal any ban is nearly zero.",
+        "created_date": "2008-01-25"
+    },
+    "upliftingnews": {
+        "display_name": "UpliftingNews",
+        "subscribers": 20339106,
+        "description": "A place to read and share positive and uplifting, feel good news stories.",
+        "created_date": "2012-05-16"
+    },
+    "videos": {
+        "display_name": "videos",
+        "subscribers": 26760469,
+        "description": "Reddit's main subreddit for videos.\n\nPlease read the sidebar below for our rules.",
+        "created_date": "2008-01-25"
+    },
+    "wholesomememes": {
+        "display_name": "wholesomememes",
+        "subscribers": 18237654,
+        "description": "Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.",
+        "created_date": "2016-09-17"
+    },
+    "worldnews": {
+        "display_name": "worldnews",
+        "subscribers": 46924322,
+        "description": "A place for major news from around the world, excluding US-internal news.",
+        "created_date": "2008-01-25"
+    },
+    "writingprompts": {
+        "display_name": "WritingPrompts",
+        "subscribers": 18834203,
+        "description": "Writing Prompts. You're a writer and you just want to flex those muscles? You've come to the right place! If you see a prompt you like, simply write a short story based on it. Get comments from others, and leave commentary for other people's works. Let's help each other.",
+        "created_date": "2010-09-08"
+    }
+}

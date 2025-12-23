@@ -260,5 +260,9 @@
         "comcast notorious unreturned": 5,
         "notorious unreturned equipment": 5,
         "anti net neutrality": 4
-    }
+    },
+    "subscribers": 20041757,
+    "description": "Subreddit dedicated to the news and discussions about the creation and use of technology and its surrounding issues.",
+    "created_date": "2008-01-25",
+    "display_name": "technology"
 }

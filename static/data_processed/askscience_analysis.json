@@ -270,5 +270,9 @@
         "cern open data": 5,
         "deep sea creatures": 4,
         "billion years old": 4
-    }
+    },
+    "subscribers": 26188359,
+    "description": "Ask a science question, get a science answer.",
+    "created_date": "2008-09-05",
+    "display_name": "askscience"
 }
