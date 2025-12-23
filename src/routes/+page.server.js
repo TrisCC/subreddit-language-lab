@@ -3,17 +3,15 @@ import path from "path";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
-  const dataProcessedDir = path.join(process.cwd(), "static", "data_processed");
+  const metadataFile = path.join(process.cwd(), "static", "data_processed", "all_subreddit_metadata.json");
 
   try {
-    const files = await fs.readdir(dataProcessedDir);
-    const subreddits = files
-      .filter((file) => file.endsWith("_analysis.json"))
-      .map((file) => file.replace("_analysis.json", ""));
-
-    return { subreddits };
+    const metadataContent = await fs.readFile(metadataFile, "utf-8");
+    const metadata = JSON.parse(metadataContent);
+    const subreddits = Object.keys(metadata);
+    return { subreddits, metadata };
   } catch (e) {
-    // If the directory doesn't exist, return an empty array
-    return { subreddits: [] };
+    // If the file doesn't exist, return an empty array
+    return { subreddits: [], metadata: {} };
   }
 }

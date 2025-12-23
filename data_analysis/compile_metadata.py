@@ -32,7 +32,7 @@ def compile_metadata(data_dir, output_file):
 
 def main():
     data_dir = 'static/data_processed'
-    output_file = 'data_analysis/all_subreddits_metadata.json'
+    output_file = 'static/data_processed/all_subreddit_metadata.json'
     compile_metadata(data_dir, output_file)
 
 if __name__ == '__main__':

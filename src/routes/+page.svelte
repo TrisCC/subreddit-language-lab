@@ -9,6 +9,7 @@
    */
   let suggestions = [];
   let showNoDataPopup = false;
+  let sortMode = "alpha-asc"; // 'alpha-asc', 'alpha-desc', 'subs-desc', 'subs-asc'
 
   function updateSuggestions() {
     if (subreddit.trim() === "") {
@@ -116,15 +117,55 @@
   {/if}
 
   {#if data.subreddits.length > 0}
-    <div class="mt-12 w-full max-w-4xl">
-      <h2 class="text-2xl font-bold text-gray-800">Available Subreddits</h2>
-      <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-        {#each data.subreddits as sub}
+    <div class="mt-12 w-full max-w-6xl">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-gray-800">Available Subreddits</h2>
+        <select
+          bind:value={sortMode}
+          class="rounded-md bg-gray-200 px-4 py-2 text-sm hover:bg-gray-300"
+        >
+          <option value="alpha-asc">Alphabetical (A-Z)</option>
+          <option value="alpha-desc">Alphabetical (Z-A)</option>
+          <option value="subs-desc">Subscribers (High to Low)</option>
+          <option value="subs-asc">Subscribers (Low to High)</option>
+        </select>
+      </div>
+      <div
+        class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        {#each data.subreddits.slice().sort((a, b) => {
+          if (sortMode === "alpha-asc") {
+            return a.localeCompare(b);
+          } else if (sortMode === "alpha-desc") {
+            return b.localeCompare(a);
+          } else {
+            const aSubs = data.metadata[a]?.subscribers || 0;
+            const bSubs = data.metadata[b]?.subscribers || 0;
+            if (sortMode === "subs-desc") {
+              return bSubs - aSubs;
+            } else {
+              // subs-asc
+              return aSubs - bSubs;
+            }
+          }
+        }) as sub}
           <a
             href="{base}/subreddit/{sub}"
-            class="rounded-lg bg-white p-4 text-center shadow-md transition-transform hover:scale-105"
+            class="rounded-lg bg-white p-4 shadow-md transition-transform hover:scale-105 block"
           >
-            <span class="font-semibold text-blue-600">/r/{sub}</span>
+            <div class="font-semibold text-blue-600">
+              /r/{data.metadata[sub]?.display_name || sub}
+            </div>
+            {#if data.metadata[sub]?.description}
+              <p class="mt-2 text-sm text-gray-600 line-clamp-2">
+                {data.metadata[sub].description}
+              </p>
+            {/if}
+            {#if data.metadata[sub]?.subscribers}
+              <p class="mt-1 text-xs text-gray-500">
+                {data.metadata[sub].subscribers.toLocaleString()} subscribers
+              </p>
+            {/if}
           </a>
         {/each}
       </div>
@@ -133,5 +174,10 @@
 </div>
 
 <style>
-  /* You can write your custom CSS here */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 </style>
