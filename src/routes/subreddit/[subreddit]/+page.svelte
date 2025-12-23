@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import WordCloud from "$lib/WordCloud.svelte";
   import PieChart from "$lib/PieChart.svelte";
   import BarChart from "$lib/BarChart.svelte";
@@ -6,6 +7,20 @@
   import NgramBarChart from "$lib/NgramBarChart.svelte";
   import StackedBarChart from "$lib/StackedBarChart.svelte";
   export let data;
+
+  let showFullDescription = false;
+  let threshold = 35;
+
+  onMount(() => {
+    const updateThreshold = () => {
+      if (window.innerWidth < 640) threshold = 20;
+      else if (window.innerWidth < 1024) threshold = 30;
+      else threshold = 50;
+    };
+    updateThreshold();
+    window.addEventListener("resize", updateThreshold);
+    return () => window.removeEventListener("resize", updateThreshold);
+  });
 
   function downloadJSON() {
     const jsonString = JSON.stringify(data.analysis, null, 2);
@@ -28,7 +43,7 @@
 <div class="container mx-auto p-8">
   <div class="flex justify-between items-center">
     <h1 class="text-4xl font-bold text-gray-800">
-      Analysis for /r/{data.subreddit}
+      /r/{data.analysis.display_name || data.subreddit}
     </h1>
     <button
       on:click={downloadJSON}
@@ -52,9 +67,43 @@
     </button>
   </div>
 
+  <!-- Metadata -->
+  <div class="mt-2 text-gray-600 flex flex-col space-y-2">
+    <div class="flex items-center">
+      <span class="material-icons text-base">description</span>
+      <span
+        class="ml-2 {data.analysis.description &&
+        data.analysis.description.length > threshold &&
+        !showFullDescription
+          ? 'line-clamp-1'
+          : ''}"
+      >
+        {data.analysis.description || "N/A"}
+      </span>
+      {#if data.analysis.description && data.analysis.description.length > threshold}
+        <button
+          on:click={() => (showFullDescription = !showFullDescription)}
+          class="ml-1 text-blue-500 text-sm whitespace-nowrap"
+        >
+          {showFullDescription ? "Read less" : "Read more"}
+        </button>
+      {/if}
+    </div>
+    <div class="flex items-center">
+      <span class="material-icons text-base">people</span>
+      <span class="ml-2"
+        >{data.analysis.subscribers?.toLocaleString() || "N/A"}</span
+      >
+    </div>
+    <div class="flex items-center">
+      <span class="material-icons">cake</span>
+      <span class="ml-2">{data.analysis.created_date || "N/A"}</span>
+    </div>
+  </div>
+
   <!-- Word Cloud -->
   <div
-    class="mt-8 rounded-lg bg-white p-6 shadow-md md:items-start"
+    class="mt-4 rounded-lg bg-white p-4 shadow-md md:items-start"
     style="height: 40vh;"
   >
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />

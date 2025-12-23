@@ -119,7 +119,7 @@
   {/if}
 
   {#if data.subreddits.length > 0}
-    <div class="mt-12 w-full max-w-6xl">
+    <div class="w-full max-w-6xl">
       <div class="flex items-center justify-between">
         <h2 class="text-2xl font-bold text-gray-800">Available Subreddits</h2>
         <select
