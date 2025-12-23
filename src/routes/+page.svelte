@@ -154,7 +154,7 @@
             class="rounded-lg bg-white p-4 shadow-md transition-transform hover:scale-105 block"
           >
             <div class="font-semibold text-blue-600">
-              /r/{data.metadata[sub]?.display_name || sub}
+              {data.metadata[sub]?.display_name}
             </div>
             {#if data.metadata[sub]?.description}
               <p class="mt-2 text-sm text-gray-600 line-clamp-2">
