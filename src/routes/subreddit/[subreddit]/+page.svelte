@@ -112,7 +112,7 @@
   <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
     <!-- POS Ratios -->
     <div class="rounded-lg bg-white p-6 shadow-md">
-      <h2 class="text-2xl font-semibold text-gray-700">
+      <h2 class="text-2xl font-semibold text-gray-700 pb-6">
         Grammatical Category Ratios
       </h2>
       <PieChart data={Object.entries(data.analysis.pos_ratios)} />
