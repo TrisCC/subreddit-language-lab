@@ -62,7 +62,7 @@
   }
 </script>
 
-<header class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
+<header class="bg-slate-950 text-white p-4 shadow-md sticky top-0 z-50">
   <div class="container mx-auto flex justify-between items-center">
     <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
       <img src="{base}/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
@@ -75,12 +75,12 @@
           on:input={updateSuggestions}
           on:keydown={handleKeydown}
           placeholder="Search subreddit..."
-          class="flex-grow rounded-l-md border-gray-600 bg-gray-700 p-2 focus:outline-none"
+          class="grow rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none"
           autocomplete="off"
         />
         <button
           type="submit"
-          class="rounded-r-md bg-blue-500 px-4 py-2 hover:bg-blue-600 focus:outline-none"
+          class="rounded-r-md bg-orange-600 border-orange-700 px-4 py-2 hover:bg-orange-700 focus:outline-none"
         >
           Search
         </button>
