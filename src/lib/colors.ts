@@ -1,0 +1,15 @@
+export const categoryColors = new Map([
+    ["Nouns", "#1f77b4"],
+    ["Proper Nouns", "#2dbbd4"],
+    ["Verbs", "#ff7f0e"],
+    ["Adjectives", "#2ca02c"],
+    ["Adverbs", "#d62728"],
+    ["Adpositions", "#8c564b"],
+    ["Auxiliaries", "#e377c2"],
+    ["Numerals", "#7f7f7f"],
+    ["Interjections", "#bcbd22"],
+    ["Coordinating Conjunctions", "#991843"],
+    ["Determiners", "#ff9800"],
+    ["Subordinating Conjunctions", "#33754e"],
+    ["Other", "#383838"],
+]);

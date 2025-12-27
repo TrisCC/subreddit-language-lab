@@ -1,0 +1,15 @@
+export const categoryMap: { [key: string]: string } = {
+    noun: "Nouns",
+    verb: "Verbs",
+    adj: "Adjectives",
+    adv: "Adverbs",
+    propn: "Proper Nouns",
+    adp: "Adpositions",
+    aux: "Auxiliaries",
+    num: "Numerals",
+    intj: "Interjections",
+    cconj: "Coordinating Conjunctions",
+    det: "Determiners",
+    sconj: "Subordinating Conjunctions",
+    other: "Other",
+};

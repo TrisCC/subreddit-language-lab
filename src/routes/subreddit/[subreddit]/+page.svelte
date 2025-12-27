@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import WordCloud from "$lib/WordCloud.svelte";
   import PieChart from "$lib/PieChart.svelte";
@@ -7,6 +7,19 @@
   import NgramBarChart from "$lib/NgramBarChart.svelte";
   import StackedBarChart from "$lib/StackedBarChart.svelte";
   export let data;
+
+  const categoryMap: { [key: string]: string } = {
+    noun: "Nouns",
+    verb: "Verbs",
+    adj: "Adjectives",
+    adv: "Adverbs",
+    propn: "Proper Nouns",
+    other: "Other",
+  };
+
+  const grammaticalCategoryRatios = Object.entries(
+    data.analysis.pos_ratios,
+  ).map(([key, value]) => [categoryMap[key.toLowerCase()] || key, value]);
 
   let showFullDescription = false;
   let threshold = 35;
@@ -115,14 +128,17 @@
       <h2 class="text-2xl font-semibold text-gray-700 pb-6">
         Grammatical Category Ratios
       </h2>
-      <PieChart data={Object.entries(data.analysis.pos_ratios)} />
+      <PieChart data={grammaticalCategoryRatios as [string, number][]} />
     </div>
 
     <!-- Most Common Words -->
     <div class="rounded-lg bg-white p-6 shadow-md">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
       <BarChart
-        data={Object.entries(data.analysis.most_common_words).slice(0, 15)}
+        data={Object.entries(data.analysis.most_common_words).slice(0, 15) as [
+          string,
+          number,
+        ][]}
       />
     </div>
   </div>
@@ -165,7 +181,6 @@
         adverbs: data.analysis.word_length_distributions.adverbs,
       }}
       categories={["Nouns", "Verbs", "Adjectives", "Adverbs"]}
-      colors={["#3b82f6", "#10b981", "#f59e42", "#ef4444"]}
     />
   </div>
 </div>

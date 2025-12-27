@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import * as d3 from "d3";
+  import { categoryColors } from "./colors";
 
   export let data: [string, number][];
   let svg: SVGSVGElement;
@@ -39,7 +40,12 @@
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    const color = d3
+      .scaleOrdinal(
+        Array.from(categoryColors.keys()),
+        Array.from(categoryColors.values()),
+      )
+      .unknown("#888");
 
     const pie = d3.pie<[string, number]>().value((d) => d[1]);
 
@@ -65,14 +71,14 @@
     const mouseover = function (
       this: SVGPathElement,
       event: MouseEvent,
-      d: d3.PieArcDatum<[string, number]>
+      d: d3.PieArcDatum<[string, number]>,
     ) {
       tooltip.style("opacity", 1);
       d3.select(this).style("stroke", "black").style("opacity", 1);
     };
     const mousemove = function (
       event: MouseEvent,
-      d: d3.PieArcDatum<[string, number]>
+      d: d3.PieArcDatum<[string, number]>,
     ) {
       tooltip
         .html(`${d.data[0]}: ${(d.data[1] * 100).toFixed(2)}%`)
@@ -82,7 +88,7 @@
     const mouseleave = function (
       this: SVGPathElement,
       event: MouseEvent,
-      d: d3.PieArcDatum<[string, number]>
+      d: d3.PieArcDatum<[string, number]>,
     ) {
       tooltip.style("opacity", 0);
       d3.select(this).style("stroke", "none").style("opacity", 0.8);
@@ -93,7 +99,7 @@
       .enter()
       .append("path")
       .attr("d", arc)
-      .attr("fill", (d) => (d.data[0] === "Other" ? "#888" : color(d.data[0])))
+      .attr("fill", (d) => color(d.data[0]))
       .style("opacity", 0.8)
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)

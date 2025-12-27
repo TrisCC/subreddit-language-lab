@@ -1,10 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import * as d3 from "d3";
+  import { categoryColors } from "./colors";
 
   export let data: Record<string, Record<string, number>>; // {category: {length: count}}
   export let categories: string[] = ["Nouns", "Verbs", "Adjectives", "Adverbs"];
-  export let colors: string[] = ["#3b82f6", "#10b981", "#f59e42", "#ef4444"];
+
+  const colors = categories.map((c) => categoryColors.get(c)!);
 
   let svg: SVGSVGElement;
   let container: HTMLDivElement;
@@ -24,7 +26,7 @@
 
     // Get all word lengths
     const lengths = Array.from(
-      new Set(categories.flatMap((cat) => Object.keys(safeCategory(cat))))
+      new Set(categories.flatMap((cat) => Object.keys(safeCategory(cat)))),
     )
       .map(Number)
       .sort((a, b) => a - b);
@@ -57,7 +59,7 @@
       .domain([
         0,
         d3.max(stackData, (d) =>
-          categories.reduce((sum, cat) => sum + d[cat], 0)
+          categories.reduce((sum, cat) => sum + d[cat], 0),
         ) || 1,
       ])
       .nice()
@@ -97,7 +99,7 @@
       .append("g")
       .attr(
         "transform",
-        `translate(${width / 2 - (categories.length * 50) / 2},${height - margin.bottom + 30})`
+        `translate(${width / 2 - (categories.length * 50) / 2},${height - margin.bottom + 30})`,
       );
     categories.forEach((cat, i) => {
       const legendItem = legend
