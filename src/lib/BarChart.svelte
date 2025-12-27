@@ -24,7 +24,12 @@
       left: Math.max(100, dynamicLeftMargin),
     };
     const width = container.clientWidth;
-    const height = Math.max(320, data.length * 28 + margin.top + margin.bottom);
+    const height = Math.max(
+      320,
+      container.clientHeight > 0
+        ? container.clientHeight
+        : data.length * 28 + margin.top + margin.bottom,
+    );
 
     d3.select(svg).attr("width", width).attr("height", height);
 
@@ -95,6 +100,6 @@
 
 <svelte:window on:resize={drawChart} />
 
-<div class="bar-chart-container" bind:this={container}>
-  <svg bind:this={svg} style="width: 100%; height: auto;" />
+<div class="bar-chart-container h-full" bind:this={container}>
+  <svg bind:this={svg} style="width: 100%; height: 100%;" />
 </div>

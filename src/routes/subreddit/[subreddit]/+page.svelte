@@ -122,24 +122,28 @@
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
     <!-- POS Ratios -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
+    <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
       <h2 class="text-2xl font-semibold text-gray-700 pb-6">
         Grammatical Category Ratios
       </h2>
-      <PieChart data={grammaticalCategoryRatios as [string, number][]} />
+      <div class="flex-grow">
+        <PieChart data={grammaticalCategoryRatios as [string, number][]} />
+      </div>
     </div>
 
     <!-- Most Common Words -->
-    <div class="rounded-lg bg-white p-6 shadow-md">
+    <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
-      <BarChart
-        data={Object.entries(data.analysis.most_common_words).slice(0, 15) as [
-          string,
-          number,
-        ][]}
-      />
+      <div class="flex-grow">
+        <BarChart
+          data={Object.entries(data.analysis.most_common_words).slice(
+            0,
+            15,
+          ) as [string, number][]}
+        />
+      </div>
     </div>
   </div>
 
