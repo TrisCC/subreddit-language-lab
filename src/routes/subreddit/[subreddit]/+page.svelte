@@ -145,7 +145,7 @@
 
   <!-- Categorized Common Words -->
   <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-700">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-4">
       Most Common Words by Category
     </h2>
     <CategoryBarChart
@@ -161,7 +161,9 @@
 
   <!-- N-grams -->
   <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
+    <h2 class="text-2xl font-semibold text-gray-700 mb-4">
+      Most Common N-grams
+    </h2>
     <NgramBarChart
       bigrams={data.analysis.most_common_bigrams}
       trigrams={data.analysis.most_common_trigrams}
