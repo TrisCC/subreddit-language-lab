@@ -10,6 +10,9 @@
     if (!container || !svg) return;
     d3.select(svg).selectAll("*").remove();
 
+    const barColor = "#3b82f6";
+    const hoverColor = "#1e40af";
+
     const longestLabelLength =
       data.length > 0 ? Math.max(...data.map((d) => d[0].length)) : 0;
     const dynamicLeftMargin = longestLabelLength * 8 + 20;
@@ -64,7 +67,14 @@
       .attr("x", 0)
       .attr("height", y.bandwidth())
       .attr("width", (d) => x(d[1]))
-      .attr("fill", "#3b82f6");
+      .attr("fill", barColor)
+      .style("cursor", "pointer")
+      .on("mouseover", function () {
+        d3.select(this).transition().duration(200).attr("fill", hoverColor);
+      })
+      .on("mouseout", function () {
+        d3.select(this).transition().duration(200).attr("fill", barColor);
+      });
 
     g.selectAll("text.bar-label")
       .data(data)
