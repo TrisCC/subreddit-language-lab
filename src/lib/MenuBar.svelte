@@ -8,6 +8,15 @@
   let showNoDataPopup = false;
   let activeSuggestion = -1;
 
+  function handleInput() {
+    if (subreddit.toLowerCase().startsWith("r/")) {
+      subreddit = subreddit.substring(2);
+    } else if (subreddit.toLowerCase().startsWith("/r/")) {
+      subreddit = subreddit.substring(3);
+    }
+    updateSuggestions();
+  }
+
   function updateSuggestions() {
     if (subreddit.trim() === "") {
       suggestions = [];
@@ -72,7 +81,7 @@
         <input
           type="text"
           bind:value={subreddit}
-          on:input={updateSuggestions}
+          on:input={handleInput}
           on:keydown={handleKeydown}
           placeholder="Search subreddit..."
           class="grow rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none"

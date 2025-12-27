@@ -11,6 +11,15 @@
   let showNoDataPopup = false;
   let sortMode = "alpha-asc"; // 'alpha-asc', 'alpha-desc', 'subs-desc', 'subs-asc'
 
+  function handleInput() {
+    if (subreddit.toLowerCase().startsWith("r/")) {
+      subreddit = subreddit.substring(2);
+    } else if (subreddit.toLowerCase().startsWith("/r/")) {
+      subreddit = subreddit.substring(3);
+    }
+    updateSuggestions();
+  }
+
   function updateSuggestions() {
     if (subreddit.trim() === "") {
       suggestions = [];
@@ -63,7 +72,7 @@
         <input
           type="text"
           bind:value={subreddit}
-          on:input={updateSuggestions}
+          on:input={handleInput}
           placeholder="Enter a subreddit name"
           class="grow rounded-l-md border-2 border-r-0 border-gray-300 p-4 focus:border-orange-400 focus:outline-none bg-white text-gray-900 text-lg"
           autocomplete="off"
