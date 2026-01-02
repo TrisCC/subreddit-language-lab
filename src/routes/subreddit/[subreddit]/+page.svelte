@@ -39,6 +39,8 @@
   ).map(([key, value]) => [categoryMap[key.toLowerCase()] || key, value]);
 
   let showFullDescription = false;
+  let showDownloadTooltip = false;
+  let showSubredditTooltip = false;
   let threshold = 35;
 
   onMount(() => {
@@ -76,28 +78,52 @@
       /r/{data.analysis.display_name || data.subreddit}
     </h1>
     <div class="flex items-center space-x-2">
-      <a
-        href="https://www.reddit.com/r/{data.subreddit}"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
-        aria-label="Go to Subreddit"
-      >
-        <img
-          src="{base}/reddit-logo.png"
-          alt="Go to Subreddit"
-          class="h-6 w-6"
-        />
-      </a>
-      <button
-        on:click={downloadJSON}
-        class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
-        aria-label="Download JSON"
-      >
-        <span class="material-symbols-outlined" style="font-size: 22px;">
-          download
-        </span>
-      </button>
+      <div class="relative">
+        <a
+          href="https://www.reddit.com/r/{data.subreddit}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center"
+          aria-label="Go to Subreddit"
+          on:mouseenter={() => (showSubredditTooltip = true)}
+          on:mouseleave={() => (showSubredditTooltip = false)}
+        >
+          <img
+            src="{base}/reddit-logo.png"
+            alt="Go to Subreddit"
+            class="h-6 w-6"
+          />
+        </a>
+        {#if showSubredditTooltip}
+          <div
+            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max p-2 bg-gray-800 text-white text-xs rounded-md shadow-lg z-10"
+            role="tooltip"
+          >
+            Visit /r/{data.subreddit}
+          </div>
+        {/if}
+      </div>
+      <div class="relative">
+        <button
+          on:click={downloadJSON}
+          on:mouseenter={() => (showDownloadTooltip = true)}
+          on:mouseleave={() => (showDownloadTooltip = false)}
+          class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center"
+          aria-label="Download JSON"
+        >
+          <span class="material-symbols-outlined" style="font-size: 22px;">
+            download
+          </span>
+        </button>
+        {#if showDownloadTooltip}
+          <div
+            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max p-2 bg-gray-800 text-white text-xs rounded-md shadow-lg z-10"
+            role="tooltip"
+          >
+            Download analysis data
+          </div>
+        {/if}
+      </div>
     </div>
   </div>
 
