@@ -7,6 +7,7 @@
   import NgramBarChart from "$lib/NgramBarChart.svelte";
   import StackedBarChart from "$lib/StackedBarChart.svelte";
   import HelpButton from "$lib/HelpButton.svelte";
+  import { base } from "$app/paths";
   export let data;
 
   const info = {
@@ -82,7 +83,11 @@
         class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
         aria-label="Go to Subreddit"
       >
-        <img src="/reddit-logo.png" alt="Go to Subreddit" class="h-6 w-6" />
+        <img
+          src="{base}/reddit-logo.png"
+          alt="Go to Subreddit"
+          class="h-6 w-6"
+        />
       </a>
       <button
         on:click={downloadJSON}
