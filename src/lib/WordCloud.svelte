@@ -11,6 +11,7 @@
   export let words: [string, number][];
   let svg: SVGSVGElement;
   let container: HTMLDivElement;
+  let lastWidth = 0;
 
   function drawWordCloud() {
     if (!container || !svg) return;
@@ -37,8 +38,8 @@
             ({
               text: d[0],
               size: sizeScale(d[1]),
-            }) as MyWord
-        )
+            }) as MyWord,
+        ),
       )
       .padding(5)
       .rotate(0)
@@ -65,11 +66,25 @@
     }
   }
 
-  onMount(drawWordCloud);
+  function handleResize() {
+    if (!container) return;
+    const newWidth = container.clientWidth;
+    if (newWidth !== lastWidth) {
+      lastWidth = newWidth;
+      drawWordCloud();
+    }
+  }
+
+  onMount(() => {
+    drawWordCloud();
+    if (container) {
+      lastWidth = container.clientWidth;
+    }
+  });
   $: if (words) drawWordCloud();
 </script>
 
-<svelte:window on:resize={drawWordCloud} />
+<svelte:window on:resize={handleResize} />
 
 <div class="wordcloud-container h-full w-full" bind:this={container}>
   <svg bind:this={svg} style="width: 100%; height: 100%;" />
