@@ -104,7 +104,7 @@
 
 <header class="bg-slate-950 text-white p-4 shadow-md sticky top-0 z-50">
   <div class="container mx-auto flex justify-between items-center">
-    <div class="flex items-center gap-8">
+    <div class="flex items-center gap-4">
       <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
         <img src="{base}/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
       </a>
@@ -114,7 +114,7 @@
         class="font-bold hover:text-gray-300">Random Subreddit</button
       >
     </div>
-    <div class="relative w-full max-w-xs">
+    <div class="relative w-3/5 max-w-2xs">
       <form class="flex w-full" on:submit|preventDefault={handleSearch}>
         <input
           type="text"
@@ -122,14 +122,14 @@
           on:input={handleInput}
           on:keydown={handleKeydown}
           placeholder="Search subreddit..."
-          class="grow rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none"
+          class="flex rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none"
           autocomplete="off"
         />
         <button
           type="submit"
-          class="rounded-r-md bg-orange-600 border-orange-700 px-4 py-2 hover:bg-orange-700 focus:outline-none"
+          class="rounded-r-md bg-orange-600 border-orange-700 px-4 py-2 hover:bg-orange-700 focus:outline-none text-center grid place-items-center"
         >
-          Search
+          <span class="material-symbols-outlined"> search </span>
         </button>
       </form>
       {#if suggestions.length > 0}
