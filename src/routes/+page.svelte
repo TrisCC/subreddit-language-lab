@@ -58,6 +58,16 @@
     const millions = num / 1000000;
     return millions.toFixed(1) + " million";
   }
+
+  const today = new Date();
+  const start = new Date(today.getFullYear(), 0, 0);
+  const oneDay = 1000 * 60 * 60 * 24;
+  const diff = today.getTime() - start.getTime();
+  const dayOfYear = Math.floor(diff / oneDay);
+
+  const featuredSubredditName =
+    data.subreddits[dayOfYear % data.subreddits.length];
+  const featuredSubredditMeta = data.metadata[featuredSubredditName];
 </script>
 
 <svelte:head>
@@ -115,8 +125,68 @@
   </div>
 </div>
 
+<!-- Featured and About Section -->
+<div class="bg-slate-200 py-8 px-8">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+    <!-- Featured Subreddit -->
+    <div class="bg-white p-8 rounded-lg shadow-lg h-full flex flex-col">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Subreddit</h2>
+      {#if featuredSubredditMeta}
+        <a
+          href="{base}/subreddit/{featuredSubredditName}"
+          class="block group grow flex-col"
+        >
+          <h3
+            class="text-2xl font-semibold text-blue-600 group-hover:underline"
+          >
+            {featuredSubredditMeta.display_name}
+          </h3>
+          {#if featuredSubredditMeta.description}
+            <p class="mt-2 text-gray-600 line-clamp-3 grow">
+              {featuredSubredditMeta.description}
+            </p>
+          {/if}
+          <div class="mt-auto">
+            {#if featuredSubredditMeta.subscribers}
+              <p class="mt-3 text-sm text-gray-500">
+                {formatSubscribers(featuredSubredditMeta.subscribers)}
+                subscribers
+              </p>
+            {/if}
+            <div
+              class="mt-4 text-orange-600 font-semibold group-hover:text-orange-700"
+            >
+              View Analysis &rarr;
+            </div>
+          </div>
+        </a>
+      {/if}
+    </div>
+
+    <!-- About the Project -->
+    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">About the project</h2>
+      <p class="text-gray-700 leading-relaxed">
+        The Subreddit Language Lab is a project designed to provide linguistic
+        insights into different Reddit communities. By analyzing post and
+        comment data, we can uncover patterns in word frequency, grammatical
+        structure, and more. The data for this project comes from the
+        <a
+          href="https://www.kaggle.com/datasets/sachinkanchan92/reddit-top-posts-50-subreddit-analysis-2011-2024"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:underline">Reddit Top Posts Dataset</a
+        > on Kaggle.
+      </p>
+      <p class="mt-4 text-gray-700 leading-relaxed">
+        Explore the available subreddits below to see what you can discover!
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- Main Content -->
-<div class="flex flex-col items-center justify-center bg-gray-50 px-8 py-16">
+<div class="flex flex-col items-center justify-center bg-gray-50 px-8 py-8">
   {#if showNoDataPopup}
     <div
       class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
@@ -194,11 +264,18 @@
 </div>
 
 <style>
-  .line-clamp-2 {
+  .line-clamp-2,
+  .line-clamp-3 {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  .line-clamp-3 {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 </style>
