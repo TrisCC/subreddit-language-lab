@@ -18,12 +18,12 @@
   }
 </script>
 
-<div class="mb-4 inline-flex border border-blue-500 rounded-md">
+<div class="mb-4 inline-flex border border-slate-950 rounded-md">
   <button
     class="px-4 py-2 border font-semibold transition-colors focus:outline-none {selected ===
     'Bigrams'
-      ? 'bg-blue-500 text-white border-blue-500'
-      : 'bg-white text-blue-500 border-blue-500 hover:bg-blue-100'}"
+      ? 'bg-slate-800 text-white border-slate-800'
+      : 'bg-white text-slate-800 border-slate-800 hover:bg-slate-100'}"
     on:click={() => (selected = "Bigrams")}
   >
     Bigrams
@@ -31,8 +31,8 @@
   <button
     class="px-4 py-2 border font-semibold transition-colors focus:outline-none {selected ===
     'Trigrams'
-      ? 'bg-blue-500 text-white border-blue-500'
-      : 'bg-white text-blue-500 border-blue-500 hover:bg-blue-100'}"
+      ? 'bg-slate-800 text-white border-slate-800'
+      : 'bg-white text-slate-800 border-slate-800 hover:bg-slate-100'}"
     on:click={() => (selected = "Trigrams")}
   >
     Trigrams
