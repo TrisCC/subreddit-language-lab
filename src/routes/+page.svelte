@@ -34,7 +34,10 @@
     const searchSub = subreddit.trim().toLowerCase();
     if (searchSub) {
       if (data.subreddits.map((s) => s.toLowerCase()).includes(searchSub)) {
-        goto(`${base}/subreddit/${searchSub}`);
+        const delay = Math.random() * 300 + 300; // Delay between 400 and 700 ms
+        setTimeout(() => {
+          goto(`${base}/subreddit/${searchSub}`);
+        }, delay);
       } else {
         showNoDataPopup = true;
       }
