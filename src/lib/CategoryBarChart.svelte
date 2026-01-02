@@ -25,10 +25,10 @@
   }
 </script>
 
-<div class="mb-4 flex gap-2">
+<div class="mb-4 inline-flex border border-blue-500 rounded-md">
   {#each categoryNames as cat}
     <button
-      class="px-4 py-2 rounded-md border font-semibold transition-colors focus:outline-none {selectedCategory ===
+      class="px-4 py-2 border font-semibold transition-colors focus:outline-none {selectedCategory ===
       cat
         ? 'bg-blue-500 text-white border-blue-500'
         : 'bg-white text-blue-500 border-blue-500 hover:bg-blue-100'}"
