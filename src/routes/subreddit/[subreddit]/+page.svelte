@@ -79,30 +79,19 @@
         href="https://www.reddit.com/r/{data.subreddit}"
         target="_blank"
         rel="noopener noreferrer"
-        class="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
         aria-label="Go to Subreddit"
       >
         <img src="/reddit-logo.png" alt="Go to Subreddit" class="h-6 w-6" />
       </a>
       <button
         on:click={downloadJSON}
-        class="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        class="p-2 w-10 h-10 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
         aria-label="Download JSON"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-          />
-        </svg>
+        <span class="material-symbols-outlined" style="font-size: 22px;">
+          download
+        </span>
       </button>
     </div>
   </div>
@@ -142,14 +131,17 @@
   </div>
 
   <!-- Word Cloud -->
-  <div class="rounded-lg bg-white md:items-start" style="height: 40vh;">
+  <div
+    class="rounded-lg bg-white md:items-start p-4 mt-4 shadow-md"
+    style="height: 40vh;"
+  >
     <div class="flex flex-row-reverse items-center">
       <HelpButton info={info.wordCloud} />
     </div>
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
-  <div class=" grid grid-cols-1 gap-8 md:grid-cols-2">
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 mt-4">
     <!-- POS Ratios -->
     <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
       <div class="flex items-center pb-6">
@@ -181,7 +173,7 @@
   </div>
 
   <!-- Categorized Common Words -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+  <div class="mt-4 rounded-lg bg-white p-6 shadow-md">
     <div class="flex items-center mb-4">
       <h2 class="text-2xl font-semibold text-gray-700">
         Most Common Words by Category
@@ -200,7 +192,7 @@
   </div>
 
   <!-- N-grams -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+  <div class="mt-4 rounded-lg bg-white p-6 shadow-md">
     <div class="flex items-center mb-4">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
       <HelpButton info={info.ngrams} />
@@ -212,7 +204,7 @@
   </div>
 
   <!-- Word Length Distributions -->
-  <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
+  <div class="mt-4 rounded-lg bg-white p-6 shadow-md">
     <div class="flex items-center">
       <h2 class="text-2xl font-semibold text-gray-700">
         Word Length Distributions
