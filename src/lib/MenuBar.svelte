@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import { base } from "$app/paths";
 
   export let subreddits: string[] = [];
@@ -7,6 +8,29 @@
   let suggestions: string[] = [];
   let showNoDataPopup = false;
   let activeSuggestion = -1;
+
+  function goToRandomSubreddit() {
+    const currentSubreddit = $page.params.subreddit;
+    let availableSubreddits = subreddits;
+
+    if (currentSubreddit) {
+      availableSubreddits = subreddits.filter(
+        (s) => s.toLowerCase() !== currentSubreddit.toLowerCase(),
+      );
+    }
+
+    if (availableSubreddits.length === 0) {
+      availableSubreddits = subreddits;
+    }
+
+    if (availableSubreddits.length > 0) {
+      const randomIndex = Math.floor(
+        Math.random() * availableSubreddits.length,
+      );
+      const randomSub = availableSubreddits[randomIndex];
+      goto(`${base}/subreddit/${randomSub}`);
+    }
+  }
 
   function handleInput() {
     if (subreddit.toLowerCase().startsWith("r/")) {
@@ -73,9 +97,16 @@
 
 <header class="bg-slate-950 text-white p-4 shadow-md sticky top-0 z-50">
   <div class="container mx-auto flex justify-between items-center">
-    <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
-      <img src="{base}/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
-    </a>
+    <div class="flex items-center gap-8">
+      <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
+        <img src="{base}/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
+      </a>
+      <a href="{base}/" class="font-bold hover:text-gray-300">Home</a>
+      <button
+        on:click={goToRandomSubreddit}
+        class="font-bold hover:text-gray-300">Random Subreddit</button
+      >
+    </div>
     <div class="relative w-full max-w-xs">
       <form class="flex w-full" on:submit|preventDefault={handleSearch}>
         <input
