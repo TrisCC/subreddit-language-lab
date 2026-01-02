@@ -22,6 +22,21 @@
     const width = container.clientWidth;
     const height = 300;
 
+    const tooltip = d3
+      .select(container)
+      .selectAll<HTMLDivElement, unknown>(".tooltip")
+      .data([null])
+      .join("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0)
+      .style("position", "absolute")
+      .style("background", "rgba(0, 0, 0, 0.7)")
+      .style("color", "white")
+      .style("border-radius", "5px")
+      .style("padding", "8px")
+      .style("font-size", "12px")
+      .style("pointer-events", "none");
+
     d3.select(svg).attr("width", width).attr("height", height);
 
     // Get all word lengths
@@ -34,7 +49,7 @@
     // Prepare stacked data
     const stackData = lengths.map((len) => {
       const entry: any = { length: len };
-      categories.forEach((cat, i) => {
+      categories.forEach((cat) => {
         entry[cat] = safeCategory(cat)[len] || 0;
       });
       return entry;
@@ -77,7 +92,23 @@
         .attr("y", (d) => y(d[1]))
         .attr("height", (d) => y(d[0]) - y(d[1]))
         .attr("width", x.bandwidth())
-        .attr("fill", colors[i]);
+        .attr("fill", colors[i])
+        .on("mouseover", (event, d) => {
+          const [posX, posY] = d3.pointer(event);
+          tooltip.style("opacity", 0.9);
+          const category = catSeries.key;
+          const wordLength = d.data.length;
+          const count = d.data[category];
+          tooltip
+            .html(
+              `<strong>${category}</strong><br>Length: ${wordLength}<br>Count: ${count}`,
+            )
+            .style("left", posX + 10 + "px")
+            .style("top", posY - 10 + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
     });
 
     // X axis
@@ -99,7 +130,9 @@
       .append("g")
       .attr(
         "transform",
-        `translate(${width / 2 - (categories.length * 50) / 2},${height - margin.bottom + 30})`,
+        `translate(${width / 2 - (categories.length * 50) / 2},${
+          height - margin.bottom + 30
+        })`,
       );
     categories.forEach((cat, i) => {
       const legendItem = legend
@@ -125,6 +158,10 @@
 
 <svelte:window on:resize={drawStackedBarChart} />
 
-<div class="stacked-bar-chart-container" bind:this={container}>
+<div
+  class="stacked-bar-chart-container"
+  bind:this={container}
+  style="position: relative;"
+>
   <svg bind:this={svg} style="width: 100%; height: auto;" />
 </div>

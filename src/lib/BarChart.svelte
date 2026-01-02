@@ -10,8 +10,8 @@
     if (!container || !svg) return;
     d3.select(svg).selectAll("*").remove();
 
-    const barColor = "#6366f1";
-    const hoverColor = "#4338ca";
+    const barColor = "#b12a90";
+    const hoverColor = "#641751";
 
     const longestLabelLength =
       data.length > 0 ? Math.max(...data.map((d) => d[0].length)) : 0;

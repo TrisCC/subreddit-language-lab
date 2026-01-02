@@ -21,7 +21,7 @@ export const categoryColors = new Map([
     ["Proper Nouns", d3.interpolatePlasma(6 / 13)],
     ["Verbs", d3.interpolatePlasma(10 / 13)],
     ["Adjectives", d3.interpolatePlasma(2 / 13)],
-    ["Adverbs", d3.interpolatePlasma(3 / 13)],
+    ["Adverbs", d3.interpolatePlasma(9 / 13)],
     ["Adpositions", d3.interpolatePlasma(11 / 13)],
     ["Auxiliaries", d3.interpolatePlasma(4 / 13)],
     ["Numerals", d3.interpolatePlasma(10 / 13)],
