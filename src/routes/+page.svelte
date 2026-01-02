@@ -49,6 +49,15 @@
     suggestions = [];
     handleSearch();
   }
+
+  /**
+   * @param {number} num
+   */
+  function formatSubscribers(num) {
+    if (!num) return "";
+    const millions = num / 1000000;
+    return millions.toFixed(1) + " million";
+  }
 </script>
 
 <svelte:head>
@@ -174,7 +183,7 @@
             {/if}
             {#if data.metadata[sub]?.subscribers}
               <p class="mt-1 text-xs text-gray-500">
-                {data.metadata[sub].subscribers.toLocaleString()} subscribers
+                {formatSubscribers(data.metadata[sub].subscribers)} subscribers
               </p>
             {/if}
           </a>
