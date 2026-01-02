@@ -58,26 +58,37 @@
     <h1 class="text-4xl font-bold text-gray-800">
       /r/{data.analysis.display_name || data.subreddit}
     </h1>
-    <button
-      on:click={downloadJSON}
-      class="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
-      aria-label="Download JSON"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <div class="flex items-center space-x-2">
+      <a
+        href="https://www.reddit.com/r/{data.subreddit}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        aria-label="Go to Subreddit"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-        />
-      </svg>
-    </button>
+        <img src="/reddit-logo.png" alt="Go to Subreddit" class="h-6 w-6" />
+      </a>
+      <button
+        on:click={downloadJSON}
+        class="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        aria-label="Download JSON"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Metadata -->
@@ -128,7 +139,7 @@
       <h2 class="text-2xl font-semibold text-gray-700 pb-6">
         Grammatical Category Ratios
       </h2>
-      <div class="flex-grow">
+      <div class="grow">
         <PieChart data={grammaticalCategoryRatios as [string, number][]} />
       </div>
     </div>
@@ -136,7 +147,7 @@
     <!-- Most Common Words -->
     <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
       <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
-      <div class="flex-grow">
+      <div class="grow">
         <BarChart
           data={Object.entries(data.analysis.most_common_words).slice(
             0,
