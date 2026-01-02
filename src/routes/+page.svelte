@@ -75,7 +75,7 @@
 </svelte:head>
 
 <!-- Hero Section -->
-<div class="w-full bg-slate-950 py-16 px-8">
+<div class="w-full bg-slate-950 py-12 px-8">
   <div class="max-w-4xl mx-auto text-center">
     <img
       src="{base}/logo.png"
@@ -126,11 +126,11 @@
 </div>
 
 <!-- Featured and About Section -->
-<div class="bg-slate-200 py-8 px-8">
+<div class="bg-slate-200 py-6 px-6">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
     <!-- Featured Subreddit -->
     <div class="bg-white p-8 rounded-lg shadow-lg h-full flex flex-col">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Subreddit</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Featured Subreddit</h2>
       {#if featuredSubredditMeta}
         <a
           href="{base}/subreddit/{featuredSubredditName}"
@@ -165,18 +165,23 @@
 
     <!-- About the Project -->
     <div class="bg-white p-8 rounded-lg shadow-lg h-full">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">About the project</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">About the project</h2>
       <p class="text-gray-700 leading-relaxed">
         The Subreddit Language Lab is a project designed to provide linguistic
         insights into different Reddit communities. By analyzing post and
         comment data, we can uncover patterns in word frequency, grammatical
-        structure, and more. The data for this project comes from the
+        structure, and more.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        The data for this project comes from the
         <a
           href="https://www.kaggle.com/datasets/sachinkanchan92/reddit-top-posts-50-subreddit-analysis-2011-2024"
           target="_blank"
           rel="noopener noreferrer"
           class="text-blue-600 hover:underline">Reddit Top Posts Dataset</a
-        > on Kaggle.
+        > on Kaggle. It features data from the 50 most popular subreddits with about
+        50,000 records in total. These posts span from 2011 to 2024, providing a
+        rich source of information for linguistic analysis.
       </p>
       <p class="mt-4 text-gray-700 leading-relaxed">
         Explore the available subreddits below to see what you can discover!
