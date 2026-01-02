@@ -6,7 +6,23 @@
   import CategoryBarChart from "$lib/CategoryBarChart.svelte";
   import NgramBarChart from "$lib/NgramBarChart.svelte";
   import StackedBarChart from "$lib/StackedBarChart.svelte";
+  import HelpButton from "$lib/HelpButton.svelte";
   export let data;
+
+  const info = {
+    wordCloud:
+      "This word cloud visualizes the most common words in the subreddit. The size of each word is proportional to its frequency.",
+    posRatios:
+      "This pie chart shows the distribution of grammatical categories (nouns, verbs, adjectives, etc.) in the subreddit.",
+    mostCommonWords:
+      "A bar chart of the most common words in the subreddit, excluding common English stop words.",
+    categorizedCommonWords:
+      "Bar charts showing the most common words in the subreddit, categorized by their grammatical type (nouns, verbs, adjectives, and adverbs).",
+    ngrams:
+      "Bar charts showing the most common bigrams (two-word phrases) and trigrams (three-word phrases) in the subreddit.",
+    wordLength:
+      "A stacked bar chart showing the distribution of word lengths for different grammatical categories.",
+  };
 
   const categoryMap: { [key: string]: string } = {
     noun: "Nouns",
@@ -126,19 +142,22 @@
   </div>
 
   <!-- Word Cloud -->
-  <div
-    class="mt-4 rounded-lg bg-white p-4 shadow-md md:items-start"
-    style="height: 40vh;"
-  >
+  <div class="rounded-lg bg-white md:items-start" style="height: 40vh;">
+    <div class="flex flex-row-reverse items-center">
+      <HelpButton info={info.wordCloud} />
+    </div>
     <WordCloud words={Object.entries(data.analysis.most_common_words)} />
   </div>
 
-  <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+  <div class=" grid grid-cols-1 gap-8 md:grid-cols-2">
     <!-- POS Ratios -->
     <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
-      <h2 class="text-2xl font-semibold text-gray-700 pb-6">
-        Grammatical Category Ratios
-      </h2>
+      <div class="flex items-center pb-6">
+        <h2 class="text-2xl font-semibold text-gray-700">
+          Grammatical Category Ratios
+        </h2>
+        <HelpButton info={info.posRatios} />
+      </div>
       <div class="grow">
         <PieChart data={grammaticalCategoryRatios as [string, number][]} />
       </div>
@@ -146,7 +165,10 @@
 
     <!-- Most Common Words -->
     <div class="rounded-lg bg-white p-6 shadow-md flex flex-col">
-      <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
+      <div class="flex items-center">
+        <h2 class="text-2xl font-semibold text-gray-700">Most Common Words</h2>
+        <HelpButton info={info.mostCommonWords} />
+      </div>
       <div class="grow">
         <BarChart
           data={Object.entries(data.analysis.most_common_words).slice(
@@ -160,9 +182,12 @@
 
   <!-- Categorized Common Words -->
   <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-700 mb-4">
-      Most Common Words by Category
-    </h2>
+    <div class="flex items-center mb-4">
+      <h2 class="text-2xl font-semibold text-gray-700">
+        Most Common Words by Category
+      </h2>
+      <HelpButton info={info.categorizedCommonWords} />
+    </div>
     <CategoryBarChart
       categories={{
         nouns: data.analysis.most_common_nouns,
@@ -176,9 +201,10 @@
 
   <!-- N-grams -->
   <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-700 mb-4">
-      Most Common N-grams
-    </h2>
+    <div class="flex items-center mb-4">
+      <h2 class="text-2xl font-semibold text-gray-700">Most Common N-grams</h2>
+      <HelpButton info={info.ngrams} />
+    </div>
     <NgramBarChart
       bigrams={data.analysis.most_common_bigrams}
       trigrams={data.analysis.most_common_trigrams}
@@ -187,9 +213,12 @@
 
   <!-- Word Length Distributions -->
   <div class="mt-8 rounded-lg bg-white p-6 shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-700">
-      Word Length Distributions
-    </h2>
+    <div class="flex items-center">
+      <h2 class="text-2xl font-semibold text-gray-700">
+        Word Length Distributions
+      </h2>
+      <HelpButton info={info.wordLength} />
+    </div>
     <StackedBarChart
       data={{
         nouns: data.analysis.word_length_distributions.nouns,
