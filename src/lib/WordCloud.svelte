@@ -43,7 +43,7 @@
       )
       .padding(5)
       .rotate(0)
-      .font("Impact")
+      .font("Anton")
       .fontSize((d) => d.size || 0)
       .on("end", draw);
 
@@ -58,7 +58,7 @@
         .enter()
         .append("text")
         .style("font-size", (d) => `${d.size}px`)
-        .style("font-family", "Impact")
+        .style("font-family", "Anton")
         .style("fill", (d, i) => d3.interpolatePlasma(i / 20))
         .attr("text-anchor", "middle")
         .attr("transform", (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)

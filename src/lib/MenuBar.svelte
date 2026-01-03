@@ -103,7 +103,9 @@
 </script>
 
 <header class="bg-slate-950 text-white p-4 shadow-md sticky top-0 z-50">
-  <div class="container mx-auto flex justify-between items-center">
+  <div
+    class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4"
+  >
     <div class="flex items-center gap-4">
       <a href="{base}/" class="text-2xl font-bold hover:text-gray-300">
         <img src="{base}/logo.png" alt="Logo" class="h-8 w-8 object-cover" />
@@ -111,10 +113,11 @@
       <a href="{base}/" class="font-bold hover:text-gray-300">Home</a>
       <button
         on:click={goToRandomSubreddit}
-        class="font-bold hover:text-gray-300">Random Subreddit</button
+        class="font-bold hover:text-gray-300 whitespace-nowrap"
+        >Random Subreddit</button
       >
     </div>
-    <div class="relative w-3/5 max-w-2xs">
+    <div class="relative w-full sm:w-auto">
       <form class="flex w-full" on:submit|preventDefault={handleSearch}>
         <input
           type="text"
@@ -122,7 +125,7 @@
           on:input={handleInput}
           on:keydown={handleKeydown}
           placeholder="Search subreddit..."
-          class="flex rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none"
+          class="w-full sm:w-64 md:w-80 flex rounded-l-md border-gray-300 bg-white p-2 text-gray-900 focus:outline-none placeholder:text-sm sm:placeholder:text-base"
           autocomplete="off"
         />
         <button
